@@ -52,8 +52,8 @@ export function About() {
             <div className="space-y-6">
               <div className="border-l-4 border-primary pl-6">
                 <h4 className="font-semibold text-lg">Data Science and Data Engineering Bootcamp</h4>
-                <p className="text-muted-foreground text-sm mb-2">HyperionDev</p>
-                <p className="text-sm">Intensive program covering machine learning, statistical analysis, and big data technologies.</p>
+                <p className="text-muted-foreground text-sm mb-2">Umuzi.org</p>
+                <p className="text-sm">Intensive program covering data science, analysis, big data technologies and machine learning.</p>
               </div>
 
               <div className="border-l-4 border-primary pl-6">
