@@ -94,6 +94,18 @@ export function Projects() {
     window.location.href = url;
   };
 
+  const openProjectPage = (projectId: number) => {
+    const routes = {
+      1: "/projects/ecommerce-rfm",
+      2: "/projects/telecom-churn", 
+      3: "/projects/global-sales",
+      4: "/projects/weather-sales",
+      5: "/projects/hr-analytics",
+      6: "/projects/airline-performance"
+    };
+    window.location.href = routes[projectId as keyof typeof routes];
+  };
+
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -137,13 +149,13 @@ export function Projects() {
                   </Button>
                   
                   <Button
-                    onClick={() => openInSameTab(project.project)}
+                    onClick={() => openProjectPage(project.id)}
                     variant="outline"
                     size="sm"
                     className={`w-full ${project.projectBg}`}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
-                    View Project
+                    View Project Report
                   </Button>
                   
                   <Button
