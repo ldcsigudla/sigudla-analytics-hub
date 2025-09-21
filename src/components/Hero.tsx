@@ -41,7 +41,6 @@ export function Hero() {
             />
           </div>
 
-          {/* Name with special styling for Sigudla */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-foreground">Lungelo Don </span>
             <span className="text-primary-dark">Sigudla</span>
