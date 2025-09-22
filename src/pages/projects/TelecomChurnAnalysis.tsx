@@ -139,10 +139,162 @@ const TelecomChurnAnalysis = () => {
           </Card>
         </div>
 
-        {/* Model Performance */}
-        <Card className="mt-8">
+        {/* Data Visualizations */}
+        <Card className="mt-8 border-project-2/20 bg-gradient-to-br from-project-2/5 to-background">
           <CardHeader>
-            <CardTitle>Machine Learning Model Performance</CardTitle>
+            <CardTitle className="text-project-2">Key Performance Insights</CardTitle>
+            <CardDescription>Interactive visualizations of churn patterns and model predictions</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Feature Importance Chart */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-2/10">
+                <h3 className="font-semibold mb-4 text-project-2">Feature Importance (SHAP Values)</h3>
+                <div className="h-64">
+                  <div className="space-y-3">
+                    {[
+                      { name: 'Monthly Charges', value: 24, color: 'bg-project-2' },
+                      { name: 'Contract Type', value: 19, color: 'bg-project-2/80' },
+                      { name: 'Tenure', value: 16, color: 'bg-project-2/60' },
+                      { name: 'Payment Method', value: 13, color: 'bg-project-2/50' },
+                      { name: 'Internet Service', value: 11, color: 'bg-project-2/40' },
+                      { name: 'Tech Support', value: 8, color: 'bg-project-2/30' },
+                      { name: 'Online Security', value: 6, color: 'bg-project-2/20' },
+                      { name: 'Senior Citizen', value: 3, color: 'bg-project-2/10' }
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-center justify-between">
+                        <span className="text-sm font-medium w-32 truncate">{item.name}</span>
+                        <div className="flex-1 mx-4">
+                          <div className="w-full bg-muted/30 rounded-full h-3">
+                            <div 
+                              className={`h-3 rounded-full transition-all duration-1000 ${item.color}`}
+                              style={{ width: `${item.value * 3}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                        <span className="text-xs font-semibold text-project-2 w-8">{item.value}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Churn Rate by Segment */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-2/10">
+                <h3 className="font-semibold mb-4 text-project-2">Churn Rate by Customer Segment</h3>
+                <div className="h-64 space-y-6">
+                  <div className="flex items-center justify-between bg-gradient-to-r from-red-500/10 to-red-500/5 p-4 rounded-lg border border-red-500/20">
+                    <div>
+                      <div className="font-semibold text-red-600">High Risk</div>
+                      <div className="text-sm text-muted-foreground">12.3% of customers</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-red-600">89%</div>
+                      <div className="text-sm text-muted-foreground">Churn Rate</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between bg-gradient-to-r from-yellow-500/10 to-yellow-500/5 p-4 rounded-lg border border-yellow-500/20">
+                    <div>
+                      <div className="font-semibold text-yellow-600">Medium Risk</div>
+                      <div className="text-sm text-muted-foreground">34.7% of customers</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-yellow-600">34%</div>
+                      <div className="text-sm text-muted-foreground">Churn Rate</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between bg-gradient-to-r from-project-2/10 to-project-2/5 p-4 rounded-lg border border-project-2/20">
+                    <div>
+                      <div className="font-semibold text-project-2">Low Risk</div>
+                      <div className="text-sm text-muted-foreground">53.0% of customers</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-project-2">8%</div>
+                      <div className="text-sm text-muted-foreground">Churn Rate</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Monthly Churn Trend */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-2/10">
+                <h3 className="font-semibold mb-4 text-project-2">Monthly Churn Trend (12 Months)</h3>
+                <div className="h-48">
+                  <svg viewBox="0 0 400 150" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="churnGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--project-2))" stopOpacity="0.3"/>
+                        <stop offset="100%" stopColor="hsl(var(--project-2))" stopOpacity="0.1"/>
+                      </linearGradient>
+                    </defs>
+                    {/* Grid lines */}
+                    {[0, 1, 2, 3, 4].map(i => (
+                      <line key={i} x1="40" y1={30 + i * 25} x2="360" y2={30 + i * 25} stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2"/>
+                    ))}
+                    {/* Data line */}
+                    <polyline
+                      fill="url(#churnGradient)"
+                      stroke="hsl(var(--project-2))"
+                      strokeWidth="3"
+                      points="40,85 70,95 100,105 130,90 160,80 190,75 220,70 250,65 280,60 310,55 340,50 360,45"
+                    />
+                    {/* Data points */}
+                    {[40,70,100,130,160,190,220,250,280,310,340,360].map((x, i) => {
+                      const y = [85,95,105,90,80,75,70,65,60,55,50,45][i];
+                      return <circle key={i} cx={x} cy={y} r="4" fill="hsl(var(--project-2))"/>
+                    })}
+                    {/* Y-axis labels */}
+                    <text x="30" y="35" fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">25%</text>
+                    <text x="30" y="60" fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">20%</text>
+                    <text x="30" y="85" fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">15%</text>
+                    <text x="30" y="110" fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">10%</text>
+                    <text x="30" y="135" fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">5%</text>
+                  </svg>
+                </div>
+                <div className="text-center mt-2">
+                  <div className="text-sm text-muted-foreground">Showing 23% reduction from 18.2% to 14.0%</div>
+                </div>
+              </div>
+
+              {/* ROI Analysis */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-2/10">
+                <h3 className="font-semibold mb-4 text-project-2">ROI Analysis - Retention Campaigns</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-project-2/5 to-transparent rounded">
+                    <span className="text-sm font-medium">Campaign Investment</span>
+                    <span className="font-bold text-project-2">$1.8M</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-project-2/10 to-transparent rounded">
+                    <span className="text-sm font-medium">Revenue Retained</span>
+                    <span className="font-bold text-project-2">$2.8M</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-project-2/15 to-transparent rounded border border-project-2/20">
+                    <span className="text-sm font-medium">Net ROI</span>
+                    <span className="font-bold text-project-2 text-lg">156%</span>
+                  </div>
+                  <div className="mt-4 p-4 bg-project-2/5 rounded-lg border border-project-2/20">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-project-2">$1.00</div>
+                      <div className="text-xs text-muted-foreground mb-2">Investment</div>
+                      <div className="text-sm text-muted-foreground">↓</div>
+                      <div className="text-2xl font-bold text-project-2">$2.56</div>
+                      <div className="text-xs text-muted-foreground">Return</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Model Performance */}
+        <Card className="mt-8 border-project-2/10">
+          <CardHeader>
+            <CardTitle className="text-project-2">Machine Learning Model Performance</CardTitle>
             <CardDescription>Detailed analysis of predictive model accuracy and validation</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">

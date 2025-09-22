@@ -68,11 +68,184 @@ const HRAnalyticsAttrition = () => {
           </CardContent>
         </Card>
 
+        {/* HR Analytics Dashboard */}
+        <Card className="mb-8 border-project-5/20 bg-gradient-to-br from-project-5/5 to-background">
+          <CardHeader>
+            <CardTitle className="text-project-5">Employee Attrition Intelligence</CardTitle>
+            <CardDescription>Comprehensive workforce analytics and predictive modeling for talent retention</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Attrition by Department */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-5/10">
+                <h3 className="font-semibold mb-4 text-project-5">Attrition Rate by Department</h3>
+                <div className="space-y-4">
+                  {[
+                    { dept: 'Sales', rate: 24.7, total: 446, left: 110, risk: 'high' },
+                    { dept: 'R&D', rate: 13.8, total: 961, left: 133, risk: 'medium' },
+                    { dept: 'HR', rate: 19.0, total: 63, left: 12, risk: 'medium' }
+                  ].map((item, index) => (
+                    <div key={index} className={`p-4 rounded-lg border ${
+                      item.risk === 'high' 
+                        ? 'bg-gradient-to-r from-red-500/10 to-red-500/5 border-red-500/20' 
+                        : 'bg-gradient-to-r from-project-5/10 to-project-5/5 border-project-5/20'
+                    }`}>
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="font-semibold">{item.dept}</div>
+                        <div className={`text-xl font-bold ${item.risk === 'high' ? 'text-red-600' : 'text-project-5'}`}>
+                          {item.rate}%
+                        </div>
+                      </div>
+                      <div className="flex justify-between text-sm text-muted-foreground">
+                        <span>{item.left} employees left</span>
+                        <span>{item.total} total employees</span>
+                      </div>
+                      <div className="mt-2 w-full bg-muted/30 rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full transition-all duration-1000 ${
+                            item.risk === 'high' ? 'bg-red-500' : 'bg-project-5'
+                          }`}
+                          style={{ width: `${item.rate * 2}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Attrition Factors */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-5/10">
+                <h3 className="font-semibold mb-4 text-project-5">Top Attrition Risk Factors</h3>
+                <div className="space-y-3">
+                  {[
+                    { factor: 'Job Satisfaction', impact: 87, description: 'Low satisfaction scores' },
+                    { factor: 'Work-Life Balance', impact: 73, description: 'Poor balance ratings' },
+                    { factor: 'Career Development', impact: 69, description: 'Limited growth opportunities' },
+                    { factor: 'Compensation', impact: 64, description: 'Below market rates' },
+                    { factor: 'Manager Relationship', impact: 58, description: 'Poor manager ratings' },
+                    { factor: 'Commute Distance', impact: 41, description: 'Long commute times' }
+                  ].map((item, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <div className="text-sm font-medium">{item.factor}</div>
+                          <div className="text-xs text-muted-foreground">{item.description}</div>
+                        </div>
+                        <span className="text-sm font-bold text-project-5">{item.impact}%</span>
+                      </div>
+                      <div className="w-full bg-muted/30 rounded-full h-2">
+                        <div 
+                          className="bg-project-5 h-2 rounded-full transition-all duration-1000"
+                          style={{ width: `${item.impact * 0.8}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Tenure vs Attrition */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-5/10">
+                <h3 className="font-semibold mb-4 text-project-5">Attrition by Years at Company</h3>
+                <div className="h-48">
+                  <svg viewBox="0 0 400 150" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="attritionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--project-5))" stopOpacity="0.3"/>
+                        <stop offset="100%" stopColor="hsl(var(--project-5))" stopOpacity="0.1"/>
+                      </linearGradient>
+                    </defs>
+                    {/* Grid lines */}
+                    {[0, 1, 2, 3, 4].map(i => (
+                      <line key={i} x1="40" y1={25 + i * 25} x2="370" y2={25 + i * 25} stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2"/>
+                    ))}
+                    {/* Bars representing attrition by tenure */}
+                    {[
+                      { x: 60, height: 80, label: '0-1yr' },
+                      { x: 120, height: 65, label: '2-5yr' },
+                      { x: 180, height: 35, label: '6-10yr' },
+                      { x: 240, height: 25, label: '11-15yr' },
+                      { x: 300, height: 20, label: '16+yr' }
+                    ].map((bar, index) => (
+                      <g key={index}>
+                        <rect
+                          x={bar.x - 15}
+                          y={125 - bar.height}
+                          width="30"
+                          height={bar.height}
+                          fill="hsl(var(--project-5))"
+                          opacity="0.8"
+                        />
+                        <text x={bar.x} y="145" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="middle">
+                          {bar.label}
+                        </text>
+                      </g>
+                    ))}
+                    {/* Y-axis labels */}
+                    <text x="30" y="30" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">40%</text>
+                    <text x="30" y="55" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">30%</text>
+                    <text x="30" y="80" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">20%</text>
+                    <text x="30" y="105" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">10%</text>
+                    <text x="30" y="130" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">0%</text>
+                  </svg>
+                </div>
+                <div className="text-center mt-2 text-sm text-muted-foreground">
+                  Highest attrition in first year (38.2%)
+                </div>
+              </div>
+
+              {/* Salary vs Attrition */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-5/10">
+                <h3 className="font-semibold mb-4 text-project-5">Monthly Income Impact</h3>
+                <div className="space-y-4">
+                  {[
+                    { range: '$1K - $3K', attrition: 31.2, employees: 412, risk: 'high' },
+                    { range: '$3K - $5K', attrition: 18.7, employees: 523, risk: 'medium' },
+                    { range: '$5K - $8K', attrition: 12.4, employees: 387, risk: 'low' },
+                    { range: '$8K+', attrition: 8.9, employees: 148, risk: 'low' }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gradient-to-r from-project-5/5 to-transparent rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full ${
+                          item.risk === 'high' ? 'bg-red-500' : 
+                          item.risk === 'medium' ? 'bg-yellow-500' : 'bg-project-5'
+                        }`}></div>
+                        <div>
+                          <div className="font-medium">{item.range}</div>
+                          <div className="text-xs text-muted-foreground">{item.employees} employees</div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className={`text-lg font-bold ${
+                          item.risk === 'high' ? 'text-red-600' : 
+                          item.risk === 'medium' ? 'text-yellow-600' : 'text-project-5'
+                        }`}>
+                          {item.attrition}%
+                        </div>
+                        <div className="text-xs text-muted-foreground">attrition</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-4 p-3 bg-project-5/5 rounded-lg border border-project-5/20">
+                  <div className="text-center">
+                    <div className="text-sm text-muted-foreground">Strong inverse correlation</div>
+                    <div className="text-lg font-bold text-project-5">r = -0.68</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Project Overview */}
-          <Card>
+          <Card className="border-project-5/10">
             <CardHeader>
-              <CardTitle>Project Overview</CardTitle>
+              <CardTitle className="text-project-5">Project Overview</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>

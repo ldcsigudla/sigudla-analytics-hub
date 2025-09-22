@@ -103,11 +103,176 @@ const AirlinePerformanceAnalysis = () => {
           </CardContent>
         </Card>
 
+        {/* Aviation Analytics Dashboard */}
+        <Card className="mb-8 border-project-6/20 bg-gradient-to-br from-project-6/5 to-background">
+          <CardHeader>
+            <CardTitle className="text-project-6">Flight Operations Intelligence</CardTitle>
+            <CardDescription>Real-time performance monitoring and predictive analytics for aviation excellence</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* On-Time Performance Trends */}
+              <div className="lg:col-span-2 bg-card/50 p-6 rounded-lg border border-project-6/10">
+                <h3 className="font-semibold mb-4 text-project-6">Monthly On-Time Performance</h3>
+                <div className="h-48">
+                  <svg viewBox="0 0 400 150" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="airlineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--project-6))" stopOpacity="0.4"/>
+                        <stop offset="100%" stopColor="hsl(var(--project-6))" stopOpacity="0.1"/>
+                      </linearGradient>
+                    </defs>
+                    {/* Grid lines */}
+                    {[0, 1, 2, 3, 4].map(i => (
+                      <line key={i} x1="40" y1={25 + i * 25} x2="370" y2={25 + i * 25} stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2"/>
+                    ))}
+                    {/* Area chart for on-time performance */}
+                    <polygon
+                      fill="url(#airlineGradient)"
+                      points="40,80 70,75 100,85 130,70 160,65 190,60 220,55 250,50 280,45 310,40 340,35 370,30 370,125 40,125"
+                    />
+                    {/* Performance line */}
+                    <polyline
+                      fill="none"
+                      stroke="hsl(var(--project-6))"
+                      strokeWidth="3"
+                      points="40,80 70,75 100,85 130,70 160,65 190,60 220,55 250,50 280,45 310,40 340,35 370,30"
+                    />
+                    {/* Target line (85%) */}
+                    <line x1="40" y1="62.5" x2="370" y2="62.5" stroke="#22c55e" strokeWidth="2" strokeDasharray="5,5"/>
+                    {/* Data points */}
+                    {[40,70,100,130,160,190,220,250,280,310,340,370].map((x, i) => {
+                      const y = [80,75,85,70,65,60,55,50,45,40,35,30][i];
+                      return <circle key={i} cx={x} cy={y} r="3" fill="hsl(var(--project-6))"/>
+                    })}
+                    {/* Labels */}
+                    <text x="30" y="30" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">95%</text>
+                    <text x="30" y="67" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">85%</text>
+                    <text x="30" y="105" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">75%</text>
+                    <text x="375" y="67" fontSize="8" fill="#22c55e">Target</text>
+                  </svg>
+                </div>
+                <div className="text-center mt-2 text-sm text-muted-foreground">
+                  Consistent improvement: 78.2% → 92.4% on-time performance
+                </div>
+              </div>
+
+              {/* Delay Causes Breakdown */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-6/10">
+                <h3 className="font-semibold mb-4 text-project-6">Delay Root Causes</h3>
+                <div className="space-y-3">
+                  {[
+                    { cause: 'Weather', percentage: 34, color: 'bg-blue-500' },
+                    { cause: 'Technical', percentage: 28, color: 'bg-red-500' },
+                    { cause: 'Air Traffic', percentage: 19, color: 'bg-yellow-500' },
+                    { cause: 'Crew', percentage: 12, color: 'bg-purple-500' },
+                    { cause: 'Ground Ops', percentage: 7, color: 'bg-gray-500' }
+                  ].map((item, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-3 h-3 rounded ${item.color}`}></div>
+                          <span className="text-sm font-medium">{item.cause}</span>
+                        </div>
+                        <span className="text-sm font-bold text-project-6">{item.percentage}%</span>
+                      </div>
+                      <div className="w-full bg-muted/30 rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full transition-all duration-1000 ${item.color}`}
+                          style={{ width: `${item.percentage * 2}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Route Performance Matrix */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-6/10">
+                <h3 className="font-semibold mb-4 text-project-6">Top Routes Performance</h3>
+                <div className="space-y-3">
+                  {[
+                    { route: 'JFK ↔ LAX', onTime: 89.4, flights: 1247, revenue: '$12.3M' },
+                    { route: 'ORD ↔ DFW', onTime: 91.7, flights: 1089, revenue: '$8.7M' },
+                    { route: 'ATL ↔ MIA', onTime: 87.2, flights: 923, revenue: '$6.9M' },
+                    { route: 'SEA ↔ SFO', onTime: 93.1, flights: 756, revenue: '$5.4M' },
+                    { route: 'BOS ↔ DCA', onTime: 85.8, flights: 634, revenue: '$4.1M' }
+                  ].map((item, index) => (
+                    <div key={index} className="p-3 bg-gradient-to-r from-project-6/5 to-transparent rounded-lg border border-project-6/10">
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="font-medium text-sm">{item.route}</div>
+                        <div className={`text-lg font-bold ${
+                          item.onTime >= 90 ? 'text-green-600' : 
+                          item.onTime >= 85 ? 'text-project-6' : 'text-red-600'
+                        }`}>
+                          {item.onTime}%
+                        </div>
+                      </div>
+                      <div className="flex justify-between text-xs text-muted-foreground">
+                        <span>{item.flights} flights</span>
+                        <span>{item.revenue} revenue</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Predictive Maintenance Alerts */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-6/10">
+                <h3 className="font-semibold mb-4 text-project-6">Maintenance Optimization Impact</h3>
+                <div className="space-y-4">
+                  <div className="text-center p-4 bg-gradient-to-br from-green-500/10 to-green-500/5 rounded-lg border border-green-500/20">
+                    <div className="text-2xl font-bold text-green-600">-42%</div>
+                    <div className="text-sm text-muted-foreground">Unplanned maintenance</div>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-gradient-to-br from-project-6/10 to-project-6/5 rounded-lg border border-project-6/20">
+                    <div className="text-2xl font-bold text-project-6">+18%</div>
+                    <div className="text-sm text-muted-foreground">Aircraft availability</div>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-gradient-to-br from-blue-500/10 to-blue-500/5 rounded-lg border border-blue-500/20">
+                    <div className="text-2xl font-bold text-blue-600">$8.9M</div>
+                    <div className="text-sm text-muted-foreground">Annual cost savings</div>
+                  </div>
+                  
+                  <div className="p-3 bg-project-6/5 rounded-lg border border-project-6/20">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-project-6">96.7%</div>
+                      <div className="text-xs text-muted-foreground">Predictive accuracy</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-card/50 p-6 rounded-lg border border-project-6/10">
+              <h3 className="font-semibold mb-4 text-project-6">Fleet Utilization Optimization</h3>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { aircraft: 'Boeing 737', utilization: 87.3, hours: '10.2h/day' },
+                  { aircraft: 'Airbus A320', utilization: 91.8, hours: '11.0h/day' },
+                  { aircraft: 'Boeing 777', utilization: 84.5, hours: '12.8h/day' },
+                  { aircraft: 'Airbus A350', utilization: 89.2, hours: '13.1h/day' }
+                ].map((item, index) => (
+                  <div key={index} className="text-center p-4 bg-gradient-to-br from-project-6/5 to-transparent rounded-lg border border-project-6/10">
+                    <div className="font-semibold text-sm mb-2">{item.aircraft}</div>
+                    <div className="text-2xl font-bold text-project-6 mb-1">{item.utilization}%</div>
+                    <div className="text-xs text-muted-foreground">{item.hours}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Project Overview */}
-          <Card>
+          <Card className="border-project-6/10">
             <CardHeader>
-              <CardTitle>Project Overview</CardTitle>
+              <CardTitle className="text-project-6">Project Overview</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>

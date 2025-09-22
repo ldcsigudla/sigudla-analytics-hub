@@ -95,11 +95,175 @@ const GlobalSalesAnalysis = () => {
           </CardContent>
         </Card>
 
+        {/* Global Sales Analytics Dashboard */}
+        <Card className="mb-8 border-project-3/20 bg-gradient-to-br from-project-3/5 to-background">
+          <CardHeader>
+            <CardTitle className="text-project-3">Global Market Intelligence</CardTitle>
+            <CardDescription>Interactive geographic and temporal analysis of worldwide sales performance</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Regional Performance */}
+              <div className="lg:col-span-2 bg-card/50 p-6 rounded-lg border border-project-3/10">
+                <h3 className="font-semibold mb-4 text-project-3">Sales by Region (Q4 2023)</h3>
+                <div className="space-y-4">
+                  {[
+                    { region: 'North America', sales: '$12.4M', growth: '+18%', color: 'bg-project-3' },
+                    { region: 'Europe', sales: '$9.8M', growth: '+12%', color: 'bg-project-3/80' },
+                    { region: 'Asia Pacific', sales: '$15.2M', growth: '+28%', color: 'bg-project-3/90' },
+                    { region: 'Latin America', sales: '$4.7M', growth: '+15%', color: 'bg-project-3/60' },
+                    { region: 'Middle East & Africa', sales: '$3.1M', growth: '+22%', color: 'bg-project-3/50' }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gradient-to-r from-project-3/5 to-transparent rounded-lg border border-project-3/10">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-4 h-4 rounded ${item.color}`}></div>
+                        <span className="font-medium">{item.region}</span>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <span className="font-bold text-project-3">{item.sales}</span>
+                        <span className="text-sm text-emerald-600 font-medium">{item.growth}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Top Products */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-3/10">
+                <h3 className="font-semibold mb-4 text-project-3">Top Performing Products</h3>
+                <div className="space-y-3">
+                  {[
+                    { product: 'Product Alpha', share: 28, revenue: '$8.2M' },
+                    { product: 'Product Beta', share: 22, revenue: '$6.4M' },
+                    { product: 'Product Gamma', share: 18, revenue: '$5.1M' },
+                    { product: 'Product Delta', share: 15, revenue: '$4.3M' },
+                    { product: 'Others', share: 17, revenue: '$4.8M' }
+                  ].map((item, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">{item.product}</span>
+                        <span className="text-xs font-bold text-project-3">{item.share}%</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex-1 bg-muted/30 rounded-full h-2 mr-2">
+                          <div 
+                            className="bg-project-3 h-2 rounded-full transition-all duration-1000"
+                            style={{ width: `${item.share * 2.5}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-xs text-muted-foreground">{item.revenue}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Sales Trend Over Time */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-3/10">
+                <h3 className="font-semibold mb-4 text-project-3">Monthly Sales Trend (2023)</h3>
+                <div className="h-48">
+                  <svg viewBox="0 0 400 150" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="salesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--project-3))" stopOpacity="0.4"/>
+                        <stop offset="100%" stopColor="hsl(var(--project-3))" stopOpacity="0.1"/>
+                      </linearGradient>
+                    </defs>
+                    {/* Grid lines */}
+                    {[0, 1, 2, 3, 4, 5].map(i => (
+                      <line key={i} x1="30" y1={25 + i * 20} x2="370" y2={25 + i * 20} stroke="hsl(var(--muted-foreground))" strokeOpacity="0.2"/>
+                    ))}
+                    {/* Area fill */}
+                    <polygon
+                      fill="url(#salesGradient)"
+                      points="30,120 60,110 90,100 120,95 150,85 180,75 210,70 240,60 270,50 300,45 330,40 360,35 370,35 370,125 30,125"
+                    />
+                    {/* Trend line */}
+                    <polyline
+                      fill="none"
+                      stroke="hsl(var(--project-3))"
+                      strokeWidth="3"
+                      points="30,120 60,110 90,100 120,95 150,85 180,75 210,70 240,60 270,50 300,45 330,40 370,35"
+                    />
+                    {/* Data points */}
+                    {[30,60,90,120,150,180,210,240,270,300,330,370].map((x, i) => {
+                      const y = [120,110,100,95,85,75,70,60,50,45,40,35][i];
+                      return <circle key={i} cx={x} cy={y} r="3" fill="hsl(var(--project-3))"/>
+                    })}
+                    {/* Y-axis labels */}
+                    <text x="20" y="30" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">$15M</text>
+                    <text x="20" y="70" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">$10M</text>
+                    <text x="20" y="110" fontSize="8" fill="hsl(var(--muted-foreground))" textAnchor="end">$5M</text>
+                  </svg>
+                </div>
+                <div className="text-center mt-2">
+                  <div className="text-sm text-muted-foreground">23% YoY growth with strong Q4 performance</div>
+                </div>
+              </div>
+
+              {/* Market Share Analysis */}
+              <div className="bg-card/50 p-6 rounded-lg border border-project-3/10">
+                <h3 className="font-semibold mb-4 text-project-3">Market Share vs Competitors</h3>
+                <div className="space-y-4">
+                  <div className="relative">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium text-project-3">Our Company</span>
+                      <span className="text-sm font-bold text-project-3">34.2%</span>
+                    </div>
+                    <div className="w-full bg-muted/30 rounded-full h-3">
+                      <div className="bg-project-3 h-3 rounded-full" style={{ width: '34.2%' }}></div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium">Competitor A</span>
+                      <span className="text-sm font-bold text-muted-foreground">28.7%</span>
+                    </div>
+                    <div className="w-full bg-muted/30 rounded-full h-3">
+                      <div className="bg-muted-foreground h-3 rounded-full" style={{ width: '28.7%' }}></div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium">Competitor B</span>
+                      <span className="text-sm font-bold text-muted-foreground">19.5%</span>
+                    </div>
+                    <div className="w-full bg-muted/30 rounded-full h-3">
+                      <div className="bg-muted-foreground/60 h-3 rounded-full" style={{ width: '19.5%' }}></div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium">Others</span>
+                      <span className="text-sm font-bold text-muted-foreground">17.6%</span>
+                    </div>
+                    <div className="w-full bg-muted/30 rounded-full h-3">
+                      <div className="bg-muted-foreground/40 h-3 rounded-full" style={{ width: '17.6%' }}></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-4 p-3 bg-project-3/5 rounded-lg border border-project-3/20">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-project-3">+5.7%</div>
+                    <div className="text-xs text-muted-foreground">Market Share Growth YoY</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Project Overview */}
-          <Card>
+          <Card className="border-project-3/10">
             <CardHeader>
-              <CardTitle>Project Overview</CardTitle>
+              <CardTitle className="text-project-3">Project Overview</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
