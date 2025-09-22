@@ -60,7 +60,7 @@ const WeatherSalesCorrelation = () => {
                 <div className="text-3xl font-bold text-project-4">$1.2M</div>
                 <div className="text-sm text-muted-foreground">Revenue Impact Identified</div>
               </div>
-              <div class="text-center">
+              <div className="text-center">
                 <div className="text-3xl font-bold text-project-4">18%</div>
                 <div className="text-sm text-muted-foreground">Forecast Accuracy Improvement</div>
               </div>

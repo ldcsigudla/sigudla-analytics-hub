@@ -121,7 +121,7 @@ const TelecomChurnAnalysis = () => {
               <div>
                 <h3 className="font-semibold mb-2">Customer Segmentation</h3>
                 <ul className="text-muted-foreground space-y-2">
-                  <li>• <strong>High Risk (12.3%)</strong>: Monthly charges >$80, short tenure, fiber optic</li>
+                  <li>• <strong>High Risk (12.3%)</strong>: Monthly charges &gt;$80, short tenure, fiber optic</li>
                   <li>• <strong>Medium Risk (34.7%)</strong>: No online security, multiple services</li>
                   <li>• <strong>Low Risk (53.0%)</strong>: Long tenure, annual contracts, low support tickets</li>
                 </ul>
