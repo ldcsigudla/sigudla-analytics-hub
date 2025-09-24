@@ -143,7 +143,7 @@ const TelecomChurnAnalysis = () => {
         <Card className="mt-8 border-project-2/20 bg-gradient-to-br from-project-2/5 to-background">
           <CardHeader>
             <CardTitle className="text-project-2">Key Performance Insights</CardTitle>
-            <CardDescription>Interactive visualizations of churn patterns and model predictions</CardDescription>
+            <CardDescription>Interactive visualizations of churn patterns and predictive model insights</CardDescription>
           </CardHeader>
           <CardContent className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
