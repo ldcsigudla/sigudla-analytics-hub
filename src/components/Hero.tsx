@@ -37,7 +37,7 @@ export function Hero() {
             <img
               src={headshotImage}
               alt="Lungelo Don Sigudla"
-              className="w-56 h-56 rounded-full mx-auto object-contain object-center shadow-lg bg-background/50"
+              className="w-56 h-56 rounded-full mx-auto object-cover object-[center_20%] shadow-lg"
             />
           </div>
 
