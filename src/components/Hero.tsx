@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ImagePositionEditor } from "@/components/ImagePositionEditor";
 import headshotImage from "/assets/headshot.png";
 import dataPatternBg from "/assets/data-pattern-bg.png";
+import { Settings2 } from "lucide-react";
 
 export function Hero() {
+  const [imagePosition, setImagePosition] = useState({ x: 50, y: 25 });
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
   const scrollToProjects = () => {
     const projectsSection = document.getElementById("projects");
     projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -33,13 +38,32 @@ export function Hero() {
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Profile Image */}
-          <div className="mb-8">
+          <div className="mb-8 relative inline-block">
             <img
               src={headshotImage}
               alt="Lungelo Don Sigudla"
-              className="w-56 h-56 rounded-full mx-auto object-cover object-[center_25%] shadow-lg"
+              className="w-56 h-56 rounded-full mx-auto object-cover shadow-lg"
+              style={{
+                objectPosition: `${imagePosition.x}% ${imagePosition.y}%`,
+              }}
             />
+            <Button
+              size="icon"
+              variant="secondary"
+              className="absolute bottom-0 right-0 rounded-full shadow-lg"
+              onClick={() => setIsEditorOpen(true)}
+            >
+              <Settings2 className="h-4 w-4" />
+            </Button>
           </div>
+
+          <ImagePositionEditor
+            imageSrc={headshotImage}
+            isOpen={isEditorOpen}
+            onClose={() => setIsEditorOpen(false)}
+            onSave={setImagePosition}
+            initialPosition={imagePosition}
+          />
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-foreground">Lungelo Don </span>
