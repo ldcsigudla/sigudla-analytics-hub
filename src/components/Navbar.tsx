@@ -25,28 +25,28 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/40">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-            <div className="text-base font-medium tracking-tight">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-xl font-bold text-foreground">
               Lungelo Sigudla
             </div>
             
-            <div className="hidden md:flex items-center gap-1">
-              <Button variant="ghost" onClick={scrollToProjects} className="text-sm">
-                Projects
+            <div className="hidden md:flex items-center space-x-6">
+              <Button variant="ghost" onClick={downloadCV}>
+                Download CV
               </Button>
               
-              <Button variant="ghost" onClick={() => setIsContactModalOpen(true)} className="text-sm">
-                Contact
+              <Button variant="ghost" onClick={scrollToProjects}>
+                View My Projects
               </Button>
               
-              <Button variant="ghost" onClick={openAnalyticTools} className="text-sm">
-                Tools
+              <Button variant="ghost" onClick={() => setIsContactModalOpen(true)}>
+                Get in Touch
               </Button>
               
-              <Button variant="ghost" onClick={downloadCV} className="text-sm">
-                CV
+              <Button variant="ghost" onClick={openAnalyticTools}>
+                Access My Data Software Tools
               </Button>
             </div>
           </div>
