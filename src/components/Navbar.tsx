@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "./ContactModal";
 
 export function Navbar() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToProjects = () => {
     const projectsSection = document.getElementById("projects");
@@ -20,7 +22,7 @@ export function Navbar() {
   };
 
   const openAnalyticTools = () => {
-    window.location.href = "https://lungelosigudla.github.io/analytic-toolbelt/";
+    navigate("/data-tools");
   };
 
   return (

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import DataTools from "./pages/DataTools";
 import EcommerceRFMAnalysis from "./pages/projects/EcommerceRFMAnalysis";
 import TelecomChurnAnalysis from "./pages/projects/TelecomChurnAnalysis";
 import GlobalSalesAnalysis from "./pages/projects/GlobalSalesAnalysis";
@@ -22,6 +23,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/data-tools" element={<DataTools />} />
           <Route path="/projects/ecommerce-rfm" element={<EcommerceRFMAnalysis />} />
           <Route path="/projects/telecom-churn" element={<TelecomChurnAnalysis />} />
           <Route path="/projects/global-sales" element={<GlobalSalesAnalysis />} />
