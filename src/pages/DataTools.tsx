@@ -22,6 +22,9 @@ export default function DataTools() {
       description: "Convert between CSV, JSON, Excel, SQL, and Parquet formats",
       icon: FileSpreadsheet,
       component: FileConverter,
+      gradient: "from-blue-500 to-cyan-500",
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-600",
     },
     {
       id: "analyzer" as ToolType,
@@ -29,6 +32,9 @@ export default function DataTools() {
       description: "Get descriptive stats, correlations, and missing data insights",
       icon: BarChart3,
       component: DataAnalyzer,
+      gradient: "from-purple-500 to-pink-500",
+      iconBg: "bg-purple-500/10",
+      iconColor: "text-purple-600",
     },
     {
       id: "visualizer" as ToolType,
@@ -36,6 +42,9 @@ export default function DataTools() {
       description: "Create interactive charts from your datasets",
       icon: LineChart,
       component: DataVisualizer,
+      gradient: "from-green-500 to-emerald-500",
+      iconBg: "bg-green-500/10",
+      iconColor: "text-green-600",
     },
     {
       id: "calculator" as ToolType,
@@ -43,6 +52,9 @@ export default function DataTools() {
       description: "Perform statistical calculations and hypothesis tests",
       icon: Calculator,
       component: StatisticsCalculator,
+      gradient: "from-orange-500 to-red-500",
+      iconBg: "bg-orange-500/10",
+      iconColor: "text-orange-600",
     },
     {
       id: "ml" as ToolType,
@@ -50,6 +62,9 @@ export default function DataTools() {
       description: "AI-powered model suggestions and feature analysis",
       icon: Brain,
       component: MLAssistant,
+      gradient: "from-indigo-500 to-blue-500",
+      iconBg: "bg-indigo-500/10",
+      iconColor: "text-indigo-600",
     },
     {
       id: "trend" as ToolType,
@@ -57,6 +72,9 @@ export default function DataTools() {
       description: "Identify patterns and forecast time series data",
       icon: TrendingUp,
       component: TrendAnalysis,
+      gradient: "from-teal-500 to-cyan-500",
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-600",
     },
   ];
 
@@ -65,10 +83,13 @@ export default function DataTools() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-background pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 pt-20">
         <div className="container mx-auto px-6 py-12">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full">
+              <span className="text-sm font-semibold text-white">Professional Data Tools</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Tools for Data Scientists & Analysts
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -82,20 +103,23 @@ export default function DataTools() {
               return (
                 <Card
                   key={tool.id}
-                  className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="cursor-pointer hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 hover:border-transparent relative overflow-hidden group"
                   onClick={() => setActiveTool(tool.id)}
                 >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <Icon className="h-6 w-6 text-primary" />
+                      <div className={`p-3 rounded-xl ${tool.iconBg} group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className={`h-6 w-6 ${tool.iconColor}`} />
                       </div>
-                      <CardTitle>{tool.title}</CardTitle>
+                      <CardTitle className="group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                        {tool.title}
+                      </CardTitle>
                     </div>
                     <CardDescription>{tool.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <button className="text-sm text-primary hover:underline font-medium">
+                    <button className={`text-sm ${tool.iconColor} hover:underline font-medium flex items-center gap-1`}>
                       Open Tool →
                     </button>
                   </CardContent>
@@ -104,16 +128,24 @@ export default function DataTools() {
             })}
           </div>
 
-          <Card className="bg-muted/50 border-dashed">
+          <Card className="border-2 border-dashed border-blue-300 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
             <CardContent className="py-12 text-center">
-              <FileSpreadsheet className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-              <h3 className="text-xl font-semibold mb-2">Upload Your Data</h3>
+              <div className="inline-block p-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-4">
+                <FileSpreadsheet className="h-12 w-12 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Upload Your Data
+              </h3>
               <p className="text-muted-foreground mb-4">
                 Select a tool above to start analyzing your data
               </p>
-              <p className="text-sm text-muted-foreground">
-                Supported formats: CSV, JSON, Excel, SQL, Parquet
-              </p>
+              <div className="flex flex-wrap justify-center gap-2 mt-4">
+                {["CSV", "JSON", "Excel", "SQL", "Parquet"].map((format) => (
+                  <span key={format} className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm font-medium border-2 border-blue-200 dark:border-blue-800">
+                    {format}
+                  </span>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
