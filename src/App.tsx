@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DataTools from "./pages/DataTools";
+import Auth from "./pages/Auth";
 import BatteryRUL from "./pages/projects/BatteryRUL";
 import NetworkCoverage from "./pages/projects/NetworkCoverage";
 import FlightRouting from "./pages/projects/FlightRouting";
@@ -30,9 +31,10 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/data-tools" element={<DataTools />} />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/data-tools" element={<DataTools />} />
+        <Route path="/auth" element={<Auth />} />
           <Route path="/projects/battery-rul" element={<BatteryRUL />} />
           <Route path="/projects/network-coverage" element={<NetworkCoverage />} />
           <Route path="/projects/flight-routing" element={<FlightRouting />} />

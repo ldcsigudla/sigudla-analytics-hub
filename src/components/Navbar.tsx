@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "./ContactModal";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { User } from "lucide-react";
 
 export function Navbar() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -50,6 +52,15 @@ export function Navbar() {
               <Button variant="ghost" onClick={openAnalyticTools}>
                 Access My Data Software Tools
               </Button>
+              
+              <Avatar 
+                className="cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                onClick={() => navigate("/auth")}
+              >
+                <AvatarFallback>
+                  <User className="w-5 h-5" />
+                </AvatarFallback>
+              </Avatar>
             </div>
           </div>
         </div>
