@@ -25,9 +25,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-500/20 to-pink-500/20 animate-gradient-shift" />
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-primary/10">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30" />
       
       {/* Glassmorphism card */}
@@ -35,10 +33,10 @@ export default function Auth() {
         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
         
         <CardHeader className="space-y-1 text-center relative">
-          <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center mb-4 shadow-lg">
+          <div className="mx-auto w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4 shadow-lg">
             <UserIcon className="w-8 h-8 text-white" />
           </div>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <CardTitle className="text-3xl font-bold text-primary">
             {isSignUp ? "Create Account" : "Welcome Back"}
           </CardTitle>
           <CardDescription className="text-base">
@@ -108,7 +106,7 @@ export default function Auth() {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-primary via-purple-500 to-pink-500 hover:opacity-90 transition-opacity shadow-lg"
+              className="w-full bg-primary hover:bg-primary/90 transition-colors shadow-lg"
             >
               {isSignUp ? "Sign Up" : "Sign In"}
             </Button>
@@ -176,15 +174,6 @@ export default function Auth() {
         </CardContent>
       </Card>
 
-      <style>{`
-        @keyframes gradient-shift {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(5%, 5%) scale(1.1); }
-        }
-        .animate-gradient-shift {
-          animation: gradient-shift 15s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 }

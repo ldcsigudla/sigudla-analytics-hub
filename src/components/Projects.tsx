@@ -18,7 +18,8 @@ const projects = [
     borderColor: "border-project-1",
     githubBg: "bg-project-1/10 hover:bg-project-1/20 border-project-1/30",
     projectBg: "bg-project-1/5 hover:bg-project-1/15 border-project-1/20", 
-    downloadBg: "bg-project-1/15 hover:bg-project-1/25 border-project-1/40"
+    downloadBg: "bg-project-1/15 hover:bg-project-1/25 border-project-1/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 2,
@@ -29,7 +30,8 @@ const projects = [
     borderColor: "border-project-2",
     githubBg: "bg-project-2/10 hover:bg-project-2/20 border-project-2/30",
     projectBg: "bg-project-2/5 hover:bg-project-2/15 border-project-2/20",
-    downloadBg: "bg-project-2/15 hover:bg-project-2/25 border-project-2/40"
+    downloadBg: "bg-project-2/15 hover:bg-project-2/25 border-project-2/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 3,
@@ -40,7 +42,8 @@ const projects = [
     borderColor: "border-project-3",
     githubBg: "bg-project-3/10 hover:bg-project-3/20 border-project-3/30",
     projectBg: "bg-project-3/5 hover:bg-project-3/15 border-project-3/20",
-    downloadBg: "bg-project-3/15 hover:bg-project-3/25 border-project-3/40"
+    downloadBg: "bg-project-3/15 hover:bg-project-3/25 border-project-3/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 4,
@@ -51,7 +54,8 @@ const projects = [
     borderColor: "border-project-4",
     githubBg: "bg-project-4/10 hover:bg-project-4/20 border-project-4/30",
     projectBg: "bg-project-4/5 hover:bg-project-4/15 border-project-4/20",
-    downloadBg: "bg-project-4/15 hover:bg-project-4/25 border-project-4/40"
+    downloadBg: "bg-project-4/15 hover:bg-project-4/25 border-project-4/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 5,
@@ -62,7 +66,8 @@ const projects = [
     borderColor: "border-project-5",
     githubBg: "bg-project-5/10 hover:bg-project-5/20 border-project-5/30",
     projectBg: "bg-project-5/5 hover:bg-project-5/15 border-project-5/20",
-    downloadBg: "bg-project-5/15 hover:bg-project-5/25 border-project-5/40"
+    downloadBg: "bg-project-5/15 hover:bg-project-5/25 border-project-5/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 6,
@@ -73,7 +78,8 @@ const projects = [
     borderColor: "border-project-6",
     githubBg: "bg-project-6/10 hover:bg-project-6/20 border-project-6/30",
     projectBg: "bg-project-6/5 hover:bg-project-6/15 border-project-6/20",
-    downloadBg: "bg-project-6/15 hover:bg-project-6/25 border-project-6/40"
+    downloadBg: "bg-project-6/15 hover:bg-project-6/25 border-project-6/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 7,
@@ -84,7 +90,8 @@ const projects = [
     borderColor: "border-project-1",
     githubBg: "bg-project-1/10 hover:bg-project-1/20 border-project-1/30",
     projectBg: "bg-project-1/5 hover:bg-project-1/15 border-project-1/20",
-    downloadBg: "bg-project-1/15 hover:bg-project-1/25 border-project-1/40"
+    downloadBg: "bg-project-1/15 hover:bg-project-1/25 border-project-1/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 8,
@@ -95,7 +102,8 @@ const projects = [
     borderColor: "border-project-2",
     githubBg: "bg-project-2/10 hover:bg-project-2/20 border-project-2/30",
     projectBg: "bg-project-2/5 hover:bg-project-2/15 border-project-2/20",
-    downloadBg: "bg-project-2/15 hover:bg-project-2/25 border-project-2/40"
+    downloadBg: "bg-project-2/15 hover:bg-project-2/25 border-project-2/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 9,
@@ -106,7 +114,8 @@ const projects = [
     borderColor: "border-project-3",
     githubBg: "bg-project-3/10 hover:bg-project-3/20 border-project-3/30",
     projectBg: "bg-project-3/5 hover:bg-project-3/15 border-project-3/20",
-    downloadBg: "bg-project-3/15 hover:bg-project-3/25 border-project-3/40"
+    downloadBg: "bg-project-3/15 hover:bg-project-3/25 border-project-3/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 10,
@@ -119,7 +128,8 @@ const projects = [
     borderColor: "border-project-1",
     githubBg: "bg-project-1/10 hover:bg-project-1/20 border-project-1/30",
     projectBg: "bg-project-1/5 hover:bg-project-1/15 border-project-1/20", 
-    downloadBg: "bg-project-1/15 hover:bg-project-1/25 border-project-1/40"
+    downloadBg: "bg-project-1/15 hover:bg-project-1/25 border-project-1/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 11,
@@ -132,7 +142,8 @@ const projects = [
     borderColor: "border-project-2",
     githubBg: "bg-project-2/10 hover:bg-project-2/20 border-project-2/30",
     projectBg: "bg-project-2/5 hover:bg-project-2/15 border-project-2/20",
-    downloadBg: "bg-project-2/15 hover:bg-project-2/25 border-project-2/40"
+    downloadBg: "bg-project-2/15 hover:bg-project-2/25 border-project-2/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 12,
@@ -145,7 +156,8 @@ const projects = [
     borderColor: "border-project-3",
     githubBg: "bg-project-3/10 hover:bg-project-3/20 border-project-3/30",
     projectBg: "bg-project-3/5 hover:bg-project-3/15 border-project-3/20",
-    downloadBg: "bg-project-3/15 hover:bg-project-3/25 border-project-3/40"
+    downloadBg: "bg-project-3/15 hover:bg-project-3/25 border-project-3/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 13,
@@ -158,7 +170,8 @@ const projects = [
     borderColor: "border-project-4",
     githubBg: "bg-project-4/10 hover:bg-project-4/20 border-project-4/30",
     projectBg: "bg-project-4/5 hover:bg-project-4/15 border-project-4/20",
-    downloadBg: "bg-project-4/15 hover:bg-project-4/25 border-project-4/40"
+    downloadBg: "bg-project-4/15 hover:bg-project-4/25 border-project-4/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 14,
@@ -171,7 +184,8 @@ const projects = [
     borderColor: "border-project-5",
     githubBg: "bg-project-5/10 hover:bg-project-5/20 border-project-5/30",
     projectBg: "bg-project-5/5 hover:bg-project-5/15 border-project-5/20",
-    downloadBg: "bg-project-5/15 hover:bg-project-5/25 border-project-5/40"
+    downloadBg: "bg-project-5/15 hover:bg-project-5/25 border-project-5/40",
+    videoId: "dQw4w9WgXcQ"
   },
   {
     id: 15,
@@ -184,7 +198,8 @@ const projects = [
     borderColor: "border-project-6",
     githubBg: "bg-project-6/10 hover:bg-project-6/20 border-project-6/30",
     projectBg: "bg-project-6/5 hover:bg-project-6/15 border-project-6/20",
-    downloadBg: "bg-project-6/15 hover:bg-project-6/25 border-project-6/40"
+    downloadBg: "bg-project-6/15 hover:bg-project-6/25 border-project-6/40",
+    videoId: "dQw4w9WgXcQ"
   }
 ];
 
@@ -245,7 +260,7 @@ export function Projects() {
               </CardHeader>
               
               <CardFooter>
-                <div className="flex flex-col w-full gap-2">
+                <div className="grid grid-cols-2 gap-2 w-full">
                   <Button
                     onClick={() => openInSameTab(project.github)}
                     variant="outline"
@@ -253,7 +268,7 @@ export function Projects() {
                     className={`w-full ${project.githubBg}`}
                   >
                     <Github className="w-4 h-4 mr-2" />
-                    View on GitHub
+                    GitHub
                   </Button>
                   
                   <Button
@@ -263,7 +278,7 @@ export function Projects() {
                     className={`w-full ${project.projectBg}`}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
-                    View Project Report
+                    Report
                   </Button>
                   
                   <Button
@@ -274,6 +289,18 @@ export function Projects() {
                   >
                     <Download className="w-4 h-4 mr-2" />
                     Download
+                  </Button>
+
+                  <Button
+                    onClick={() => window.open(`https://youtube.com/watch?v=${project.videoId || 'dQw4w9WgXcQ'}`, '_blank')}
+                    variant="outline"
+                    size="sm"
+                    className="w-full bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
+                  >
+                    <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Video
                   </Button>
                 </div>
               </CardFooter>

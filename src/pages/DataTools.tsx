@@ -86,7 +86,7 @@ export default function DataTools() {
       <div className="min-h-screen bg-[#0a0a0a] pt-20">
         <div className="container mx-auto px-6 py-12">
           <div className="mb-12 text-center">
-            <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full">
+            <div className="inline-block mb-4 px-4 py-2 bg-blue-600 rounded-full">
               <span className="text-sm font-semibold text-white">Useful Data Tools</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -106,20 +106,19 @@ export default function DataTools() {
                   className="cursor-pointer hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 hover:border-transparent relative overflow-hidden group"
                   onClick={() => setActiveTool(tool.id)}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
                       <div className={`p-3 rounded-xl ${tool.iconBg} group-hover:scale-110 transition-transform duration-300`}>
                         <Icon className={`h-6 w-6 ${tool.iconColor}`} />
                       </div>
-                      <CardTitle className="group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                      <CardTitle className="group-hover:text-primary transition-all">
                         {tool.title}
                       </CardTitle>
                     </div>
                     <CardDescription>{tool.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <button className={`px-4 py-2 rounded-lg bg-gradient-to-r ${tool.gradient} text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2`}>
+                    <button className={`px-4 py-2 rounded-lg ${tool.iconColor.replace('text-', 'bg-')} text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2`}>
                       Open Tool →
                     </button>
                   </CardContent>
@@ -128,12 +127,12 @@ export default function DataTools() {
             })}
           </div>
 
-          <Card className="border-2 border-dashed border-blue-300 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
+          <Card className="border-2 border-dashed border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/20">
             <CardContent className="py-12 text-center">
-              <div className="inline-block p-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-4">
+              <div className="inline-block p-4 rounded-full bg-blue-600 mb-4">
                 <FileSpreadsheet className="h-12 w-12 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h3 className="text-xl font-semibold mb-2 text-blue-600">
                 Upload Your Data
               </h3>
               <p className="text-muted-foreground mb-4">
