@@ -83,16 +83,16 @@ export default function DataTools() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 pt-20">
+      <div className="min-h-screen bg-[#0a0a0a] pt-20">
         <div className="container mx-auto px-6 py-12">
           <div className="mb-12 text-center">
             <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full">
-              <span className="text-sm font-semibold text-white">Professional Data Tools</span>
+              <span className="text-sm font-semibold text-white">Useful Data Tools</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
               Tools for Data Scientists & Analysts
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Professional-grade data tools for analysis, visualization, and transformation
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function DataTools() {
                     <CardDescription>{tool.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <button className={`text-sm ${tool.iconColor} hover:underline font-medium flex items-center gap-1`}>
+                    <button className={`px-4 py-2 rounded-lg bg-gradient-to-r ${tool.gradient} text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2`}>
                       Open Tool →
                     </button>
                   </CardContent>
