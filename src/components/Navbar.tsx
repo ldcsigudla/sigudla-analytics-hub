@@ -47,7 +47,7 @@ export function Navbar() {
               className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
             >
               <Avatar className="w-10 h-10 border-2 border-primary">
-                <AvatarImage src={headshotImage} alt="Lungelo Sigudla" />
+                <AvatarImage src={headshotImage} alt="Lungelo Sigudla" className="object-cover" />
                 <AvatarFallback className="bg-primary text-white">LS</AvatarFallback>
               </Avatar>
               <span className="text-xl font-bold text-white">

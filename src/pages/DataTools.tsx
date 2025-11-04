@@ -10,6 +10,7 @@ import { TrendAnalysis } from "@/components/tools/TrendAnalysis";
 import { FileSpreadsheet, BarChart3, TrendingUp, Calculator, Brain, LineChart } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BuyData } from "@/components/BuyData";
 
 type ToolType = "converter" | "analyzer" | "visualizer" | "calculator" | "ml" | "trend" | null;
 
@@ -130,26 +131,7 @@ export default function DataTools() {
             })}
           </div>
 
-          <Card className="border-2 border-dashed border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/20">
-            <CardContent className="py-12 text-center">
-              <div className="inline-block p-4 rounded-full bg-blue-600 mb-4">
-                <FileSpreadsheet className="h-12 w-12 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-blue-600">
-                Upload Your Data
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Select a tool above to start analyzing your data
-              </p>
-              <div className="flex flex-wrap justify-center gap-2 mt-4">
-                {["CSV", "JSON", "Excel", "SQL", "Parquet"].map((format) => (
-                  <span key={format} className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm font-medium border-2 border-blue-200 dark:border-blue-800">
-                    {format}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <BuyData />
         </div>
       </div>
       <Footer />
