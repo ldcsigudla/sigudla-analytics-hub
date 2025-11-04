@@ -5,23 +5,99 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Lock, User as UserIcon } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 export default function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const { user } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    // Redirect if already logged in
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Backend authentication will be implemented later
-    console.log("Auth submitted:", { email, password, name, isSignUp });
+    setLoading(true);
+
+    try {
+      if (isSignUp) {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/`,
+            data: {
+              full_name: name,
+            },
+          },
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: "Success!",
+          description: "Account created successfully. Please check your email to verify your account.",
+        });
+        
+        // Redirect to home after successful signup
+        setTimeout(() => navigate("/"), 1500);
+      } else {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: "Welcome back!",
+          description: "You have successfully signed in.",
+        });
+        
+        navigate("/");
+      }
+    } catch (error: any) {
+      console.error("Auth error:", error);
+      toast({
+        title: "Error",
+        description: error.message || "An error occurred during authentication",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    // Google sign-in will be implemented later
-    console.log("Google sign-in clicked");
+  const handleGoogleSignIn = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/`,
+        },
+      });
+
+      if (error) throw error;
+    } catch (error: any) {
+      console.error("Google sign-in error:", error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to sign in with Google",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -107,8 +183,9 @@ export default function Auth() {
             <Button
               type="submit"
               className="w-full bg-primary hover:bg-primary/90 transition-colors shadow-lg"
+              disabled={loading}
             >
-              {isSignUp ? "Sign Up" : "Sign In"}
+              {loading ? "Loading..." : (isSignUp ? "Sign Up" : "Sign In")}
             </Button>
           </form>
 

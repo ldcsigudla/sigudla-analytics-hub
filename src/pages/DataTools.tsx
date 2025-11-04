@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { FileConverter } from "@/components/tools/FileConverter";
 import { DataAnalyzer } from "@/components/tools/DataAnalyzer";
 import { DataVisualizer } from "@/components/tools/DataVisualizer";
@@ -118,9 +119,11 @@ export default function DataTools() {
                     <CardDescription>{tool.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <button className={`px-4 py-2 rounded-lg ${tool.iconColor.replace('text-', 'bg-')} text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2`}>
+                    <Button 
+                      className={`w-auto px-6 py-2 ${tool.iconBg} ${tool.iconColor} border border-current hover:opacity-80 font-semibold transition-all duration-300`}
+                    >
                       Open Tool →
-                    </button>
+                    </Button>
                   </CardContent>
                 </Card>
               );

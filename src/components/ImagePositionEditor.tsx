@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ImagePositionEditorProps {
   imageSrc: string;
@@ -23,6 +24,12 @@ export function ImagePositionEditor({
   onSave,
   initialPosition = { x: 50, y: 25 },
 }: ImagePositionEditorProps) {
+  const { isAdmin } = useAuth();
+  
+  // Don't render if not admin
+  if (!isAdmin) {
+    return null;
+  }
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });

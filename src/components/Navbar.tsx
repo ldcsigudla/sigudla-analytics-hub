@@ -1,17 +1,27 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "./ContactModal";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User } from "lucide-react";
+import headshotImage from "@/assets/headshot.png";
 
 export function Navbar() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById("projects");
-    projectsSection?.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const projectsSection = document.getElementById("projects");
+        projectsSection?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const projectsSection = document.getElementById("projects");
+      projectsSection?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const downloadCV = () => {
@@ -34,39 +44,45 @@ export function Navbar() {
           <div className="flex items-center justify-between">
             <div 
               onClick={() => navigate("/")}
-              className="text-xl font-bold text-white cursor-pointer hover:text-primary transition-colors"
+              className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
             >
-              Lungelo Sigudla
+              <Avatar className="w-10 h-10 border-2 border-primary">
+                <AvatarImage src={headshotImage} alt="Lungelo Sigudla" />
+                <AvatarFallback className="bg-primary text-white">LS</AvatarFallback>
+              </Avatar>
+              <span className="text-xl font-bold text-white">
+                Lungelo Sigudla
+              </span>
             </div>
             
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-3">
               <Button 
                 variant="ghost" 
                 onClick={scrollToProjects}
-                className="text-white hover:text-primary hover:bg-white/10 font-medium"
+                className="text-white hover:text-white hover:bg-white/10 font-medium border border-transparent hover:border-white/20 transition-all"
               >
                 Projects
               </Button>
               
               <Button 
-                variant="outline" 
+                variant="ghost" 
                 onClick={downloadCV}
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20 font-medium"
+                className="text-white hover:text-white hover:bg-white/10 font-medium border border-transparent hover:border-white/20 transition-all"
               >
                 Download CV
               </Button>
               
               <Button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-white font-semibold"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold border-0 shadow-lg hover:shadow-xl transition-all"
               >
                 Contact
               </Button>
               
               <Button 
-                variant="secondary" 
+                variant="ghost" 
                 onClick={openAnalyticTools}
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20 font-semibold"
+                className="text-white hover:text-white hover:bg-white/10 font-medium border border-transparent hover:border-white/20 transition-all"
               >
                 Access My Data Tools
               </Button>
