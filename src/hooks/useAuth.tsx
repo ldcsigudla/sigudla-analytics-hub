@@ -24,7 +24,7 @@ export const useAuth = () => {
                 .select('role')
                 .eq('user_id', session.user.id)
                 .eq('role', 'admin')
-                .single();
+                .maybeSingle();
               
               setIsAdmin(!error && !!data);
             } catch (error) {
@@ -51,7 +51,7 @@ export const useAuth = () => {
               .select('role')
               .eq('user_id', session.user.id)
               .eq('role', 'admin')
-              .single();
+              .maybeSingle();
             
             setIsAdmin(!error && !!data);
           } catch (error) {
