@@ -7,12 +7,14 @@ import { DataVisualizer } from "@/components/tools/DataVisualizer";
 import { StatisticsCalculator } from "@/components/tools/StatisticsCalculator";
 import { MLAssistant } from "@/components/tools/MLAssistant";
 import { TrendAnalysis } from "@/components/tools/TrendAnalysis";
-import { FileSpreadsheet, BarChart3, TrendingUp, Calculator, Brain, LineChart } from "lucide-react";
+import { SyntheticDataGenerator } from "@/components/tools/SyntheticDataGenerator";
+import { CodeEditor } from "@/components/tools/CodeEditor";
+import { FileSpreadsheet, BarChart3, TrendingUp, Calculator, Brain, LineChart, Database, Code } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BuyData } from "@/components/BuyData";
 
-type ToolType = "converter" | "analyzer" | "visualizer" | "calculator" | "ml" | "trend" | null;
+type ToolType = "converter" | "analyzer" | "visualizer" | "calculator" | "ml" | "trend" | "synthetic" | "codeeditor" | null;
 
 export default function DataTools() {
   const [activeTool, setActiveTool] = useState<ToolType>(null);
@@ -77,6 +79,26 @@ export default function DataTools() {
       gradient: "from-teal-500 to-cyan-500",
       iconBg: "bg-teal-500/10",
       iconColor: "text-teal-600",
+    },
+    {
+      id: "synthetic" as ToolType,
+      title: "Synthetic Data Generator",
+      description: "Generate high-quality synthetic datasets for testing and development",
+      icon: Database,
+      component: SyntheticDataGenerator,
+      gradient: "from-pink-500 to-rose-500",
+      iconBg: "bg-pink-500/10",
+      iconColor: "text-pink-600",
+    },
+    {
+      id: "codeeditor" as ToolType,
+      title: "Data Code Editor",
+      description: "Edit code for Python, R, SQL, Tableau, Power BI, Excel, Apache Spark, and SAS",
+      icon: Code,
+      component: CodeEditor,
+      gradient: "from-violet-500 to-purple-500",
+      iconBg: "bg-violet-500/10",
+      iconColor: "text-violet-600",
     },
   ];
 

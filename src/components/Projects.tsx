@@ -7,6 +7,12 @@ import project3Image from "@/assets/project-3.png";
 import project4Image from "@/assets/project-4.png";
 import project5Image from "@/assets/project-5.png";
 import project6Image from "@/assets/project-6.png";
+import projectRFMImage from "@/assets/project-rfm.png";
+import projectChurnImage from "@/assets/project-churn.png";
+import projectSalesImage from "@/assets/project-sales.png";
+import projectWeatherImage from "@/assets/project-weather.png";
+import projectHRImage from "@/assets/project-hr.png";
+import projectAirlineImage from "@/assets/project-airline.png";
 
 const projects = [
   {
@@ -124,7 +130,7 @@ const projects = [
     github: "https://github.com/lungelodon/ecommerce-rfm-customer-segmentation",
     project: "https://lungelodon.github.io/ecommerce-rfm-customer-segmentation/",
     download: "https://github.com/lungelodon/ecommerce-rfm-customer-segmentation/archive/refs/heads/main.zip",
-    image: project1Image,
+    image: projectRFMImage,
     borderColor: "border-project-1",
     githubBg: "bg-project-1/10 hover:bg-project-1/20 border-project-1/30",
     projectBg: "bg-project-1/5 hover:bg-project-1/15 border-project-1/20", 
@@ -138,7 +144,7 @@ const projects = [
     github: "https://github.com/lungelodon/telecom-customer-churn-analysis",
     project: "https://lungelodon.github.io/telecom-customer-churn-analysis/",
     download: "https://github.com/lungelodon/telecom-customer-churn-analysis/archive/refs/heads/main.zip",
-    image: project2Image,
+    image: projectChurnImage,
     borderColor: "border-project-2",
     githubBg: "bg-project-2/10 hover:bg-project-2/20 border-project-2/30",
     projectBg: "bg-project-2/5 hover:bg-project-2/15 border-project-2/20",
@@ -152,7 +158,7 @@ const projects = [
     github: "https://github.com/lungelodon/global-sales-performance-analysis",
     project: "https://lungelodon.github.io/global-sales-performance-analysis/",
     download: "https://github.com/lungelodon/global-sales-performance-analysis/archive/refs/heads/main.zip",
-    image: project3Image,
+    image: projectSalesImage,
     borderColor: "border-project-3",
     githubBg: "bg-project-3/10 hover:bg-project-3/20 border-project-3/30",
     projectBg: "bg-project-3/5 hover:bg-project-3/15 border-project-3/20",
@@ -166,7 +172,7 @@ const projects = [
     github: "https://github.com/lungelodon/api-driven-weather-sales-correlation",
     project: "https://lungelodon.github.io/api-driven-weather-sales-correlation/",
     download: "https://github.com/lungelodon/api-driven-weather-sales-correlation/archive/refs/heads/main.zip",
-    image: project4Image,
+    image: projectWeatherImage,
     borderColor: "border-project-4",
     githubBg: "bg-project-4/10 hover:bg-project-4/20 border-project-4/30",
     projectBg: "bg-project-4/5 hover:bg-project-4/15 border-project-4/20",
@@ -180,7 +186,7 @@ const projects = [
     github: "https://github.com/lungelodon/hr-analytics-employee-attrition",
     project: "https://lungelodon.github.io/hr-analytics-employee-attrition/",
     download: "https://github.com/lungelodon/hr-analytics-employee-attrition/archive/refs/heads/main.zip",
-    image: project5Image,
+    image: projectHRImage,
     borderColor: "border-project-5",
     githubBg: "bg-project-5/10 hover:bg-project-5/20 border-project-5/30",
     projectBg: "bg-project-5/5 hover:bg-project-5/15 border-project-5/20",
@@ -194,7 +200,7 @@ const projects = [
     github: "https://github.com/lungelodon/us-airline-on-time-performance",
     project: "https://lungelodon.github.io/us-airline-on-time-performance/",
     download: "https://github.com/lungelodon/us-airline-on-time-performance/archive/refs/heads/main.zip",
-    image: project6Image,
+    image: projectAirlineImage,
     borderColor: "border-project-6",
     githubBg: "bg-project-6/10 hover:bg-project-6/20 border-project-6/30",
     projectBg: "bg-project-6/5 hover:bg-project-6/15 border-project-6/20",
