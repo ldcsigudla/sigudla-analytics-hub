@@ -59,36 +59,32 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
   }, [emblaApi, onSelect]);
 
   const getCardStyle = (index: number, totalSlides: number) => {
-    const diff = index - selectedIndex;
-    const normalizedDiff = diff > totalSlides / 2 ? diff - totalSlides : diff < -totalSlides / 2 ? diff + totalSlides : diff;
+    // Calculate the angle for each card in the circle
+    const angle = ((index - selectedIndex) / totalSlides) * 360;
     
-    const isCenter = normalizedDiff === 0;
-    const absDistance = Math.abs(normalizedDiff);
+    // Circular positioning with translateZ for depth
+    const rotateY = angle;
+    const translateZ = 550; // Distance from center (radius of the circle)
     
-    // Scale: center is largest, others get smaller based on distance
-    const scale = isCenter ? 1 : Math.max(0.6, 1 - absDistance * 0.15);
+    const isCenter = index === selectedIndex;
+    const absAngle = Math.abs(angle);
+    const normalizedAngle = absAngle > 180 ? 360 - absAngle : absAngle;
     
-    // Rotation: creates the circular arc effect
-    const rotateY = normalizedDiff * 35;
+    // Scale based on angle - center is largest
+    const scale = isCenter ? 1 : Math.max(0.7, 1 - (normalizedAngle / 180) * 0.3);
     
-    // Z-axis translation for depth
-    const translateZ = isCenter ? 0 : -absDistance * 150;
+    // Opacity based on angle
+    const opacity = Math.max(0.4, 1 - (normalizedAngle / 180) * 0.6);
     
-    // X-axis translation for spacing
-    const translateX = normalizedDiff * 280;
-    
-    // Opacity: center is fully visible, others fade
-    const opacity = isCenter ? 1 : Math.max(0.3, 1 - absDistance * 0.25);
-    
-    // Blur for depth of field effect
-    const blur = isCenter ? 0 : absDistance * 2;
+    // Slight blur for depth of field
+    const blur = isCenter ? 0 : (normalizedAngle / 180) * 3;
 
     return {
-      transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+      transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
       opacity,
       filter: `blur(${blur}px)`,
       transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-      zIndex: isCenter ? 10 : Math.max(1, 10 - absDistance),
+      zIndex: isCenter ? 10 : Math.max(1, 10 - Math.floor(normalizedAngle / 20)),
     };
   };
 
@@ -112,39 +108,58 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
       </button>
 
       {/* 3D Carousel Container */}
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="overflow-visible flex items-center justify-center" style={{ minHeight: "700px" }}>
         <div 
-          className="flex items-center"
-          style={{
-            perspective: "2000px",
-            perspectiveOrigin: "50% 50%",
-            transformStyle: "preserve-3d",
-            minHeight: "600px",
-          }}
+          ref={emblaRef}
+          className="overflow-visible"
+          style={{ width: "100%", maxWidth: "1400px" }}
         >
-          {projects.map((project, index) => {
-            const style = getCardStyle(index, projects.length);
-            const isCenter = index === selectedIndex;
+          <div 
+            className="flex items-center justify-center"
+            style={{
+              perspective: "1000px",
+              perspectiveOrigin: "50% 50%",
+              transformStyle: "preserve-3d",
+              minHeight: "650px",
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                width: "450px",
+                height: "550px",
+                transformStyle: "preserve-3d",
+                transform: "perspective(1000px) rotateX(-16deg) rotateY(0deg)",
+                left: "50%",
+                top: "50%",
+                marginLeft: "-225px",
+                marginTop: "-275px",
+              }}
+            >
+            {projects.map((project, index) => {
+              const style = getCardStyle(index, projects.length);
+              const isCenter = index === selectedIndex;
 
-            return (
-              <div
-                key={project.id}
-                className="flex-shrink-0 flex-grow-0"
-                style={{
-                  flexBasis: "450px",
-                  transformStyle: "preserve-3d",
-                  ...style,
-                }}
-              >
-                <Card 
-                  className={`group hover:shadow-2xl transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60 mx-auto ${
-                    isCenter ? "cursor-pointer" : "pointer-events-none"
-                  }`}
+              return (
+                <div
+                  key={project.id}
                   style={{
-                    width: "400px",
+                    position: "absolute",
+                    inset: "0 0 0 0",
                     transformStyle: "preserve-3d",
+                    ...style,
                   }}
                 >
+                  <Card 
+                    className={`group hover:shadow-2xl transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60 ${
+                      isCenter ? "cursor-pointer" : "pointer-events-none"
+                    }`}
+                    style={{
+                      width: "400px",
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
                   <CardHeader>
                     <div className="w-full h-56 bg-muted rounded-lg flex items-center justify-center mb-4 overflow-hidden">
                       <img
@@ -168,7 +183,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full ${project.githubBg}`}
+                        className={`w-full rounded-full ${project.githubBg}`}
                         disabled={!isCenter}
                       >
                         <Github className="w-4 h-4 mr-2" />
@@ -182,7 +197,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full ${project.projectBg}`}
+                        className={`w-full rounded-full ${project.projectBg}`}
                         disabled={!isCenter}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
@@ -197,7 +212,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                           }}
                           variant="outline"
                           size="sm"
-                          className={`w-full ${project.downloadBg}`}
+                          className={`w-full rounded-full ${project.downloadBg}`}
                           disabled={!isCenter}
                         >
                           <Download className="w-4 h-4 mr-2" />
@@ -212,7 +227,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className="w-full bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
+                        className="w-full rounded-full bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
                         disabled={!isCenter}
                       >
                         <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -222,10 +237,12 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                       </Button>
                     </div>
                   </CardFooter>
-                </Card>
-              </div>
-            );
-          })}
+                  </Card>
+                </div>
+              );
+            })}
+            </div>
+          </div>
         </div>
       </div>
 

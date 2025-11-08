@@ -39,7 +39,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/20 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div 
@@ -50,7 +50,7 @@ export function Navbar() {
                 <AvatarImage src={headshotImage} alt="Lungelo Sigudla" className="object-cover" />
                 <AvatarFallback className="bg-primary text-white">LS</AvatarFallback>
               </Avatar>
-              <span className="text-xl font-bold text-white">
+              <span className="text-xl font-bold text-foreground">
                 Lungelo Sigudla
               </span>
             </div>
@@ -59,7 +59,7 @@ export function Navbar() {
               <Button 
                 variant="ghost" 
                 onClick={scrollToProjects}
-                className="text-white hover:text-white hover:bg-white/10 font-medium border border-transparent hover:border-white/20 transition-all"
+                className="rounded-full bg-background/30 backdrop-blur-md text-foreground hover:text-foreground hover:bg-background/50 font-medium border border-border/30 hover:border-border/60 transition-all px-6"
               >
                 Projects
               </Button>
@@ -67,14 +67,14 @@ export function Navbar() {
               <Button 
                 variant="ghost" 
                 onClick={downloadCV}
-                className="text-white hover:text-white hover:bg-white/10 font-medium border border-transparent hover:border-white/20 transition-all"
+                className="rounded-full bg-background/30 backdrop-blur-md text-foreground hover:text-foreground hover:bg-background/50 font-medium border border-border/30 hover:border-border/60 transition-all px-6"
               >
                 Download CV
               </Button>
               
               <Button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold border-0 shadow-lg hover:shadow-xl transition-all"
+                className="rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold border-0 shadow-lg hover:shadow-xl transition-all px-6"
               >
                 Contact
               </Button>
@@ -82,7 +82,7 @@ export function Navbar() {
               <Button 
                 variant="ghost" 
                 onClick={openAnalyticTools}
-                className="text-white hover:text-white hover:bg-white/10 font-medium border border-transparent hover:border-white/20 transition-all"
+                className="rounded-full bg-background/30 backdrop-blur-md text-foreground hover:text-foreground hover:bg-background/50 font-medium border border-border/30 hover:border-border/60 transition-all px-6"
               >
                 Access My Data Tools
               </Button>

@@ -114,3 +114,13 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .glassmorphic {
+    @apply bg-background/20 backdrop-blur-xl border border-white/10;
+  }
+  
+  .glassmorphic-button {
+    @apply bg-background/30 backdrop-blur-md border border-border/30 hover:bg-background/50 hover:border-border/60 transition-all;
+  }
+}
