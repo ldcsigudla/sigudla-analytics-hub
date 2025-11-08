@@ -1,6 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Download, Github } from "lucide-react";
+import { ProjectCarousel3D } from "@/components/ProjectCarousel3D";
 import project1Image from "@/assets/project-1.png";
 import project2Image from "@/assets/project-2.png";
 import project3Image from "@/assets/project-3.png";
@@ -236,7 +234,7 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 bg-muted/30">
+    <section id="projects" className="py-20 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">My Data Projects</h2>
@@ -245,74 +243,11 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Card 
-              key={project.id} 
-              className={`group hover:shadow-lg transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60`}
-            >
-              <CardHeader>
-                <div className="w-full h-48 bg-muted rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardTitle className="text-xl font-semibold">{project.title}</CardTitle>
-                <CardDescription className="text-muted-foreground">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardFooter>
-                <div className="grid grid-cols-2 gap-2 w-full">
-                  <Button
-                    onClick={() => openInSameTab(project.github)}
-                    variant="outline"
-                    size="sm"
-                    className={`w-full ${project.githubBg}`}
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    GitHub
-                  </Button>
-                  
-                  <Button
-                    onClick={() => openProjectPage(project.id)}
-                    variant="outline"
-                    size="sm"
-                    className={`w-full ${project.projectBg}`}
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Report
-                  </Button>
-                  
-                  <Button
-                    onClick={() => window.open(project.download, '_blank')}
-                    variant="outline"
-                    size="sm"
-                    className={`w-full ${project.downloadBg}`}
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download
-                  </Button>
-
-                  <Button
-                    onClick={() => window.open(`https://youtube.com/watch?v=${project.videoId || 'dQw4w9WgXcQ'}`, '_blank')}
-                    variant="outline"
-                    size="sm"
-                    className="w-full bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
-                  >
-                    <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    Presentation Video
-                  </Button>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        <ProjectCarousel3D 
+          projects={projects}
+          onProjectClick={openProjectPage}
+          onGithubClick={openInSameTab}
+        />
       </div>
     </section>
   );
