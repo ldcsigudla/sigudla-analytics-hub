@@ -59,32 +59,34 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
   }, [emblaApi, onSelect]);
 
   const getCardStyle = (index: number, totalSlides: number) => {
-    // Calculate the angle for each card in the circle
-    const angle = ((index - selectedIndex) / totalSlides) * 360;
+    const diff = index - selectedIndex;
+    const normalizedDiff = diff > totalSlides / 2 ? diff - totalSlides : diff < -totalSlides / 2 ? diff + totalSlides : diff;
     
-    // Circular positioning with translateZ for depth
+    const isCenter = normalizedDiff === 0;
+    const absDistance = Math.abs(normalizedDiff);
+    
+    // Calculate circular angle
+    const angle = normalizedDiff * (360 / Math.max(totalSlides, 5));
+    
+    // Scale: center is largest
+    const scale = isCenter ? 1 : Math.max(0.65, 1 - absDistance * 0.15);
+    
+    // Circular 3D positioning
     const rotateY = angle;
-    const translateZ = 550; // Distance from center (radius of the circle)
+    const translateZ = 550; // Radius of the circle
     
-    const isCenter = index === selectedIndex;
-    const absAngle = Math.abs(angle);
-    const normalizedAngle = absAngle > 180 ? 360 - absAngle : absAngle;
+    // Opacity: center is fully visible
+    const opacity = isCenter ? 1 : Math.max(0.35, 1 - absDistance * 0.25);
     
-    // Scale based on angle - center is largest
-    const scale = isCenter ? 1 : Math.max(0.7, 1 - (normalizedAngle / 180) * 0.3);
-    
-    // Opacity based on angle
-    const opacity = Math.max(0.4, 1 - (normalizedAngle / 180) * 0.6);
-    
-    // Slight blur for depth of field
-    const blur = isCenter ? 0 : (normalizedAngle / 180) * 3;
+    // Blur for depth of field
+    const blur = isCenter ? 0 : absDistance * 2;
 
     return {
       transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
       opacity,
       filter: `blur(${blur}px)`,
       transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-      zIndex: isCenter ? 10 : Math.max(1, 10 - Math.floor(normalizedAngle / 20)),
+      zIndex: isCenter ? 10 : Math.max(1, 10 - absDistance),
     };
   };
 
@@ -108,58 +110,44 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
       </button>
 
       {/* 3D Carousel Container */}
-      <div className="overflow-visible flex items-center justify-center" style={{ minHeight: "700px" }}>
+      <div className="overflow-hidden" ref={emblaRef}>
         <div 
-          ref={emblaRef}
-          className="overflow-visible"
-          style={{ width: "100%", maxWidth: "1400px" }}
+          className="flex"
+          style={{
+            perspective: "1500px",
+            perspectiveOrigin: "50% 50%",
+            transformStyle: "preserve-3d",
+            minHeight: "700px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          <div 
-            className="flex items-center justify-center"
-            style={{
-              perspective: "1000px",
-              perspectiveOrigin: "50% 50%",
-              transformStyle: "preserve-3d",
-              minHeight: "650px",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                width: "450px",
-                height: "550px",
-                transformStyle: "preserve-3d",
-                transform: "perspective(1000px) rotateX(-16deg) rotateY(0deg)",
-                left: "50%",
-                top: "50%",
-                marginLeft: "-225px",
-                marginTop: "-275px",
-              }}
-            >
-            {projects.map((project, index) => {
-              const style = getCardStyle(index, projects.length);
-              const isCenter = index === selectedIndex;
+          {projects.map((project, index) => {
+            const style = getCardStyle(index, projects.length);
+            const isCenter = index === selectedIndex;
 
-              return (
-                <div
-                  key={project.id}
+            return (
+              <div
+                key={project.id}
+                className="flex-shrink-0"
+                style={{
+                  flexBasis: "450px",
+                  transformStyle: "preserve-3d",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  ...style,
+                }}
+              >
+                <Card 
+                  className={`group hover:shadow-2xl transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60 ${
+                    isCenter ? "cursor-pointer" : "pointer-events-none"
+                  }`}
                   style={{
-                    position: "absolute",
-                    inset: "0 0 0 0",
+                    width: "400px",
                     transformStyle: "preserve-3d",
-                    ...style,
                   }}
                 >
-                  <Card 
-                    className={`group hover:shadow-2xl transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60 ${
-                      isCenter ? "cursor-pointer" : "pointer-events-none"
-                    }`}
-                    style={{
-                      width: "400px",
-                      transformStyle: "preserve-3d",
-                    }}
-                  >
                   <CardHeader>
                     <div className="w-full h-56 bg-muted rounded-lg flex items-center justify-center mb-4 overflow-hidden">
                       <img
@@ -237,12 +225,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                       </Button>
                     </div>
                   </CardFooter>
-                  </Card>
-                </div>
-              );
-            })}
-            </div>
-          </div>
+                </Card>
+              </div>
+            );
+          })}
         </div>
       </div>
 
