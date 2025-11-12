@@ -28,7 +28,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
   const [currentRotation, setCurrentRotation] = useState(0);
   const totalProjects = projects.length;
   const angleStep = 360 / totalProjects; // Degrees between each card
-  const radius = 800; // Distance from center (translateZ value) - increased to prevent overlap
+  const radius = 880; // Distance from center (translateZ value) - increased to prevent overlap
 
   const rotateNext = () => {
     setCurrentRotation((prev) => prev - angleStep);
@@ -83,8 +83,8 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
         <div
           className="relative"
           style={{
-            width: "400px",
-            height: "600px",
+            width: "320px",
+            height: "480px",
             transformStyle: "preserve-3d",
             transform: `rotateY(${currentRotation}deg)`,
             transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
