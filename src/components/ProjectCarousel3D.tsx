@@ -83,8 +83,8 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
         <div
           className="relative"
           style={{
-            width: "320px",
-            height: "480px",
+            width: "300px",
+            height: "440px",
             transformStyle: "preserve-3d",
             transform: `rotateY(${currentRotation}deg)`,
             transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -116,8 +116,8 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                     transform: isActive ? "scale(1.05)" : "scale(0.95)",
                   }}
                 >
-                  <CardHeader>
-                    <div className="w-full h-56 bg-muted rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                  <CardHeader className="p-4">
+                    <div className="w-full h-40 bg-muted rounded-lg flex items-center justify-center mb-3 overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -125,14 +125,14 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         loading="lazy"
                       />
                     </div>
-                    <CardTitle className="text-xl font-semibold">{project.title}</CardTitle>
-                    <CardDescription className="text-muted-foreground line-clamp-3">
+                    <CardTitle className="text-lg font-semibold">{project.title}</CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground line-clamp-2">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardFooter>
-                    <div className="grid grid-cols-2 gap-2 w-full">
+                  <CardFooter className="p-4 pt-0">
+                    <div className="grid grid-cols-2 gap-1.5 w-full">
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
