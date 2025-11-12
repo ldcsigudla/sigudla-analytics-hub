@@ -83,8 +83,8 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
         <div
           className="relative"
           style={{
-            width: "300px",
-            height: "440px",
+            width: "240px",
+            height: "360px",
             transformStyle: "preserve-3d",
             transform: `rotateY(${currentRotation}deg)`,
             transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -116,8 +116,8 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                     transform: isActive ? "scale(1.05)" : "scale(0.95)",
                   }}
                 >
-                  <CardHeader className="p-4">
-                    <div className="w-full h-40 bg-muted rounded-lg flex items-center justify-center mb-3 overflow-hidden">
+                  <CardHeader className="p-3">
+                    <div className="w-full h-32 bg-muted rounded-lg flex items-center justify-center mb-2 overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -125,14 +125,14 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         loading="lazy"
                       />
                     </div>
-                    <CardTitle className="text-lg font-semibold">{project.title}</CardTitle>
-                    <CardDescription className="text-sm text-muted-foreground line-clamp-2">
+                    <CardTitle className="text-base font-semibold">{project.title}</CardTitle>
+                    <CardDescription className="text-xs text-muted-foreground line-clamp-2">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardFooter className="p-4 pt-0">
-                    <div className="grid grid-cols-2 gap-1.5 w-full">
+                  <CardFooter className="p-3 pt-0">
+                    <div className="grid grid-cols-2 gap-1 w-full">
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -140,10 +140,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full ${project.githubBg}`}
+                        className={`w-full rounded-full text-xs px-2 h-7 ${project.githubBg}`}
                         disabled={!isActive}
                       >
-                        <Github className="w-4 h-4 mr-2" />
+                        <Github className="w-3 h-3 mr-1" />
                         GitHub
                       </Button>
                       
@@ -154,10 +154,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full ${project.projectBg}`}
+                        className={`w-full rounded-full text-xs px-2 h-7 ${project.projectBg}`}
                         disabled={!isActive}
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <ExternalLink className="w-3 h-3 mr-1" />
                         Report
                       </Button>
                       
@@ -169,10 +169,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                           }}
                           variant="outline"
                           size="sm"
-                          className={`w-full rounded-full ${project.downloadBg}`}
+                          className={`w-full rounded-full text-xs px-2 h-7 ${project.downloadBg}`}
                           disabled={!isActive}
                         >
-                          <Download className="w-4 h-4 mr-2" />
+                          <Download className="w-3 h-3 mr-1" />
                           Download
                         </Button>
                       )}
@@ -184,10 +184,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className="w-full rounded-full bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
+                        className="w-full rounded-full text-xs px-2 h-7 bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
                         disabled={!isActive}
                       >
-                        <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                        <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                         Video
