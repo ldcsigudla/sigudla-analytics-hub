@@ -136,7 +136,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
-                          onGithubClick(project.github);
+                          window.open('https://github.com/lungelodon', '_blank');
                         }}
                         variant="outline"
                         size="sm"

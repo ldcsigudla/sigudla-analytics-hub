@@ -786,55 +786,90 @@ def calculate_delay_costs(df, cost_per_minute=45):
           </CardContent>
         </Card>
 
+        {/* Data Overview */}
+        <Card className="mt-8">
+          <CardHeader><CardTitle>Data Overview</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="border rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Total Flights</td><td className="p-3 text-right">4.36 million</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Time Period</td><td className="p-3 text-right">2019-2023</td></tr>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Airlines</td><td className="p-3 text-right">14 major carriers</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Airports</td><td className="p-3 text-right">350+</td></tr>
+                    <tr><td className="p-3 font-medium">Features</td><td className="p-3 text-right">28 (delays, carriers, routes)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>On-Time Performance</span><span className="text-project-6 font-semibold">82.1%</span></div></div>
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Avg Delay (when delayed)</span><span className="text-project-6 font-semibold">54 min</span></div></div>
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Annual Cost Impact</span><span className="text-project-6 font-semibold">$8.3B</span></div></div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Limitations */}
+        <Card className="mt-8 border-yellow-500/20">
+          <CardHeader><CardTitle>Limitations & Constraints</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Data Limitations</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• US domestic flights only—no international data</li>
+                  <li>• COVID-19 period (2020-2021) may skew trends</li>
+                  <li>• No fuel price or crew availability data</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Analysis Assumptions</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• 15-minute threshold used for "on-time" definition</li>
+                  <li>• Delay costs estimated at $45/minute average</li>
+                  <li>• Cascading delay effects not fully modeled</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* What I Would Do Next */}
+        <Card className="mt-8 border-project-6/20 bg-gradient-to-br from-project-6/5 to-background">
+          <CardHeader><CardTitle className="text-project-6">What I Would Do Next</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 border border-project-6/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Predictive Delays</h4>
+                <p className="text-sm text-muted-foreground">Build ML model to predict delays 24-48 hours ahead using weather forecasts and schedules.</p>
+              </div>
+              <div className="p-4 border border-project-6/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Network Optimization</h4>
+                <p className="text-sm text-muted-foreground">Apply graph theory to identify hub vulnerabilities and optimize buffer times.</p>
+              </div>
+              <div className="p-4 border border-project-6/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Passenger Impact</h4>
+                <p className="text-sm text-muted-foreground">Link delay data to passenger satisfaction scores and revenue impact per route.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Project Resources */}
         <Card className="mt-8">
-          <CardHeader>
-            <CardTitle>Project Resources & Downloads</CardTitle>
-            <CardDescription>Access all project files, datasets, and interactive dashboards</CardDescription>
-          </CardHeader>
+          <CardHeader><CardTitle>Project Resources</CardTitle></CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Flight Dataset</span>
-                <span className="text-xs text-muted-foreground">4.36M flight records</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Github className="w-5 h-5 mb-2" />
-                <span className="text-xs">Analysis Pipeline</span>
-                <span className="text-xs text-muted-foreground">Python & Power BI</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <ExternalLink className="w-5 h-5 mb-2" />
-                <span className="text-xs">Interactive Dashboard</span>
-                <span className="text-xs text-muted-foreground">Live performance metrics</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Strategic Report</span>
-                <span className="text-xs text-muted-foreground">Executive summary</span>
-              </Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Flight Dataset</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Github className="w-5 h-5 mb-2" /><span className="text-xs">Analysis Pipeline</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><ExternalLink className="w-5 h-5 mb-2" /><span className="text-xs">Interactive Dashboard</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Strategic Report</span></Button>
             </div>
-            
             <div className="mt-6 flex gap-4">
-              <Button 
-                className="flex-1"
-                onClick={() => window.open("https://github.com/lungelodon/us-airline-on-time-performance", "_self")}
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View Full Repository
-              </Button>
-              
-              <Button 
-                variant="outline"
-                onClick={() => window.open("https://github.com/lungelodon/us-airline-on-time-performance/archive/refs/heads/main.zip", "_blank")}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Project
-              </Button>
+              <Button className="flex-1" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Github className="w-4 h-4 mr-2" />View Repository</Button>
+              <Button variant="outline" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Download className="w-4 h-4 mr-2" />Download</Button>
             </div>
           </CardContent>
         </Card>

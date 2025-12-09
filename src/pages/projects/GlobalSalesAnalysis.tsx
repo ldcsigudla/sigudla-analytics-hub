@@ -619,55 +619,98 @@ def regional_analysis(df):
           </CardContent>
         </Card>
 
-        {/* Project Resources */}
+        {/* Data Overview */}
         <Card className="mt-8">
           <CardHeader>
-            <CardTitle>Project Resources & Downloads</CardTitle>
-            <CardDescription>Access all project files, datasets, and interactive dashboards</CardDescription>
+            <CardTitle>Data Overview</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Raw Data (CSV)</span>
-                <span className="text-xs text-muted-foreground">9,994 sales records</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Github className="w-5 h-5 mb-2" />
-                <span className="text-xs">SQL Scripts</span>
-                <span className="text-xs text-muted-foreground">Analysis pipeline</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <ExternalLink className="w-5 h-5 mb-2" />
-                <span className="text-xs">Tableau Workbook</span>
-                <span className="text-xs text-muted-foreground">Interactive dashboard</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Full Report</span>
-                <span className="text-xs text-muted-foreground">Detailed analysis</span>
-              </Button>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="border rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Total Orders</td><td className="p-3 text-right">9,994</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Time Period</td><td className="p-3 text-right">2014-2017</td></tr>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Regions</td><td className="p-3 text-right">4 (West, East, Central, South)</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Product Categories</td><td className="p-3 text-right">3 (Technology, Furniture, Office Supplies)</td></tr>
+                    <tr><td className="p-3 font-medium">Customer Segments</td><td className="p-3 text-right">3 (Consumer, Corporate, Home Office)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between"><span className="font-medium">Total Revenue</span><span className="text-project-3 font-semibold">$2.3M</span></div>
+                </div>
+                <div className="p-4 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between"><span className="font-medium">Total Profit</span><span className="text-project-3 font-semibold">$286K</span></div>
+                </div>
+                <div className="p-4 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between"><span className="font-medium">Avg Profit Margin</span><span className="text-project-3 font-semibold">12.4%</span></div>
+                </div>
+              </div>
             </div>
-            
+          </CardContent>
+        </Card>
+
+        {/* Limitations */}
+        <Card className="mt-8 border-yellow-500/20">
+          <CardHeader><CardTitle>Limitations & Constraints</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Data Limitations</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• US-only data—international markets not represented</li>
+                  <li>• No competitor pricing or market share data</li>
+                  <li>• Historical data (2014-2017) may not reflect current trends</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Analysis Assumptions</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• Discount strategies assumed to be consistent</li>
+                  <li>• No external economic factors modeled</li>
+                  <li>• Shipping costs treated as fixed percentages</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* What I Would Do Next */}
+        <Card className="mt-8 border-project-3/20 bg-gradient-to-br from-project-3/5 to-background">
+          <CardHeader><CardTitle className="text-project-3">What I Would Do Next</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 border border-project-3/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Time Series Forecasting</h4>
+                <p className="text-sm text-muted-foreground">Implement ARIMA/Prophet models to predict future sales by region and category.</p>
+              </div>
+              <div className="p-4 border border-project-3/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Price Elasticity Analysis</h4>
+                <p className="text-sm text-muted-foreground">Model discount sensitivity to optimize promotional strategies.</p>
+              </div>
+              <div className="p-4 border border-project-3/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Embedded Analytics</h4>
+                <p className="text-sm text-muted-foreground">Deploy Tableau dashboards with automated email reports for stakeholders.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Project Resources */}
+        <Card className="mt-8">
+          <CardHeader><CardTitle>Project Resources</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Raw Data (CSV)</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Github className="w-5 h-5 mb-2" /><span className="text-xs">SQL Scripts</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><ExternalLink className="w-5 h-5 mb-2" /><span className="text-xs">Tableau Workbook</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Full Report</span></Button>
+            </div>
             <div className="mt-6 flex gap-4">
-              <Button 
-                className="flex-1"
-                onClick={() => window.open("https://github.com/lungelodon/global-sales-performance-analysis", "_self")}
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View Full Repository
-              </Button>
-              
-              <Button 
-                variant="outline"
-                onClick={() => window.open("https://github.com/lungelodon/global-sales-performance-analysis/archive/refs/heads/main.zip", "_blank")}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Project
-              </Button>
+              <Button className="flex-1" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Github className="w-4 h-4 mr-2" />View Repository</Button>
+              <Button variant="outline" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Download className="w-4 h-4 mr-2" />Download</Button>
             </div>
           </CardContent>
         </Card>

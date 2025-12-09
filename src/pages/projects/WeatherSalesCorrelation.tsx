@@ -596,55 +596,90 @@ def build_weather_prediction_model(df):
           </CardContent>
         </Card>
 
+        {/* Data Overview */}
+        <Card className="mt-8">
+          <CardHeader><CardTitle>Data Overview</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="border rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Weather Data Points</td><td className="p-3 text-right">847,392</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Sales Transactions</td><td className="p-3 text-right">1.2M</td></tr>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Retail Locations</td><td className="p-3 text-right">47</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Time Period</td><td className="p-3 text-right">3 years (2020-2023)</td></tr>
+                    <tr><td className="p-3 font-medium">Weather Variables</td><td className="p-3 text-right">12 (temp, humidity, precip, etc.)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Correlation Coefficient</span><span className="text-project-4 font-semibold">r = 0.73</span></div></div>
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Revenue Impact</span><span className="text-project-4 font-semibold">$1.2M identified</span></div></div>
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Forecast Accuracy</span><span className="text-project-4 font-semibold">+18% improvement</span></div></div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Limitations */}
+        <Card className="mt-8 border-yellow-500/20">
+          <CardHeader><CardTitle>Limitations & Constraints</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Data Limitations</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• Weather station proximity varies by location</li>
+                  <li>• Indoor climate control may mask weather effects</li>
+                  <li>• Regional climate differences not fully accounted</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Model Assumptions</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• Linear correlation assumed for some products</li>
+                  <li>• Lag effects simplified to same-day analysis</li>
+                  <li>• Promotional overlaps not fully isolated</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* What I Would Do Next */}
+        <Card className="mt-8 border-project-4/20 bg-gradient-to-br from-project-4/5 to-background">
+          <CardHeader><CardTitle className="text-project-4">What I Would Do Next</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 border border-project-4/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Causal Impact Analysis</h4>
+                <p className="text-sm text-muted-foreground">Use CausalImpact library to quantify true weather-driven sales beyond correlation.</p>
+              </div>
+              <div className="p-4 border border-project-4/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">ML Demand Forecasting</h4>
+                <p className="text-sm text-muted-foreground">Build LSTM model integrating 7-day weather forecasts for inventory planning.</p>
+              </div>
+              <div className="p-4 border border-project-4/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Dynamic Pricing Engine</h4>
+                <p className="text-sm text-muted-foreground">Implement real-time price adjustments based on weather-demand predictions.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Project Resources */}
         <Card className="mt-8">
-          <CardHeader>
-            <CardTitle>Project Resources & Downloads</CardTitle>
-            <CardDescription>Access all project files, datasets, and interactive dashboards</CardDescription>
-          </CardHeader>
+          <CardHeader><CardTitle>Project Resources</CardTitle></CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Weather Dataset</span>
-                <span className="text-xs text-muted-foreground">847K data points</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Github className="w-5 h-5 mb-2" />
-                <span className="text-xs">API Integration Code</span>
-                <span className="text-xs text-muted-foreground">Python Flask app</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <ExternalLink className="w-5 h-5 mb-2" />
-                <span className="text-xs">Live Dashboard</span>
-                <span className="text-xs text-muted-foreground">Real-time monitoring</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Analysis Report</span>
-                <span className="text-xs text-muted-foreground">Comprehensive findings</span>
-              </Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Weather Dataset</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Github className="w-5 h-5 mb-2" /><span className="text-xs">API Integration</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><ExternalLink className="w-5 h-5 mb-2" /><span className="text-xs">Live Dashboard</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Analysis Report</span></Button>
             </div>
-            
             <div className="mt-6 flex gap-4">
-              <Button 
-                className="flex-1"
-                onClick={() => window.open("https://github.com/lungelodon/api-driven-weather-sales-correlation", "_self")}
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View Full Repository
-              </Button>
-              
-              <Button 
-                variant="outline"
-                onClick={() => window.open("https://github.com/lungelodon/api-driven-weather-sales-correlation/archive/refs/heads/main.zip", "_blank")}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Project
-              </Button>
+              <Button className="flex-1" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Github className="w-4 h-4 mr-2" />View Repository</Button>
+              <Button variant="outline" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Download className="w-4 h-4 mr-2" />Download</Button>
             </div>
           </CardContent>
         </Card>
