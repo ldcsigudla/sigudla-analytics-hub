@@ -3,9 +3,9 @@ export function About() {
     <section className="py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Passionate About Data</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Focused on Data Science and Analysis</h2>
           <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-            I'm passionate about transforming raw data into meaningful stories that drive business growth. 
+            I specialize in transforming raw data into meaningful insights that drive business growth.
             With expertise in machine learning, statistical analysis, and data visualization, I help organizations 
             make smarter decisions through data-driven insights.
           </p>

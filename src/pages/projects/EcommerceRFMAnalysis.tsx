@@ -483,11 +483,135 @@ def calculate_rfm_scores(transactions_df):
           </CardContent>
         </Card>
 
+        {/* Data Overview Table */}
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle>Data Overview</CardTitle>
+            <CardDescription>Dataset characteristics and quality metrics</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-semibold mb-4">Dataset Summary</h3>
+                <div className="border rounded-lg overflow-hidden">
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b bg-muted/30">
+                        <td className="p-3 font-medium">Total Transactions</td>
+                        <td className="p-3 text-right">541,909</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="p-3 font-medium">Unique Customers</td>
+                        <td className="p-3 text-right">4,372</td>
+                      </tr>
+                      <tr className="border-b bg-muted/30">
+                        <td className="p-3 font-medium">Unique Products</td>
+                        <td className="p-3 text-right">3,684</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="p-3 font-medium">Time Period</td>
+                        <td className="p-3 text-right">Dec 2010 – Dec 2011</td>
+                      </tr>
+                      <tr className="border-b bg-muted/30">
+                        <td className="p-3 font-medium">Countries</td>
+                        <td className="p-3 text-right">38 (UK primary)</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="p-3 font-medium">Missing Values</td>
+                        <td className="p-3 text-right">24.9% in CustomerID</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-medium">Total Revenue</td>
+                        <td className="p-3 text-right">$9.7M</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-4">RFM Score Distribution</h3>
+                <div className="space-y-3">
+                  <div className="p-4 bg-muted/30 rounded-lg">
+                    <div className="flex justify-between mb-2">
+                      <span className="font-medium">Recency (R)</span>
+                      <span className="text-project-1 font-semibold">1-5 scale</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Days since last purchase. 5 = most recent, 1 = least recent.</p>
+                  </div>
+                  <div className="p-4 bg-muted/30 rounded-lg">
+                    <div className="flex justify-between mb-2">
+                      <span className="font-medium">Frequency (F)</span>
+                      <span className="text-project-1 font-semibold">1-5 scale</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Total number of transactions. 5 = most frequent, 1 = least frequent.</p>
+                  </div>
+                  <div className="p-4 bg-muted/30 rounded-lg">
+                    <div className="flex justify-between mb-2">
+                      <span className="font-medium">Monetary (M)</span>
+                      <span className="text-project-1 font-semibold">1-5 scale</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Total spend amount. 5 = highest spender, 1 = lowest spender.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Limitations */}
+        <Card className="mt-8 border-yellow-500/20">
+          <CardHeader>
+            <CardTitle>Limitations & Constraints</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Data Limitations</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• 24.9% of transactions lack CustomerID—excluded from RFM</li>
+                  <li>• B2B wholesale orders skew monetary values</li>
+                  <li>• UK-centric data may not generalize to other markets</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Model Assumptions</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• Quartile-based scoring assumes uniform distribution</li>
+                  <li>• Static segmentation does not account for seasonality</li>
+                  <li>• Equal weighting of R, F, M may not suit all businesses</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* What I Would Do Next */}
+        <Card className="mt-8 border-project-1/20 bg-gradient-to-br from-project-1/5 to-background">
+          <CardHeader>
+            <CardTitle className="text-project-1">What I Would Do Next</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 border border-project-1/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">CLV Prediction</h4>
+                <p className="text-sm text-muted-foreground">Implement probabilistic models (BG/NBD, Gamma-Gamma) to predict future customer lifetime value.</p>
+              </div>
+              <div className="p-4 border border-project-1/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Dynamic Segmentation</h4>
+                <p className="text-sm text-muted-foreground">Build real-time RFM scoring pipeline that updates segments as new transactions arrive.</p>
+              </div>
+              <div className="p-4 border border-project-1/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">A/B Testing Framework</h4>
+                <p className="text-sm text-muted-foreground">Test segment-specific offers and measure incremental revenue impact of personalization.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Project Resources */}
         <Card className="mt-8">
           <CardHeader>
             <CardTitle>Project Resources & Downloads</CardTitle>
-            <CardDescription>Access all project files, datasets, and interactive dashboards</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -496,41 +620,25 @@ def calculate_rfm_scores(transactions_df):
                 <span className="text-xs">Raw Data (CSV)</span>
                 <span className="text-xs text-muted-foreground">2.3MB dataset</span>
               </Button>
-              
               <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
                 <Github className="w-5 h-5 mb-2" />
                 <span className="text-xs">Python Scripts</span>
-                <span className="text-xs text-muted-foreground">Analysis pipeline</span>
               </Button>
-              
               <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
                 <ExternalLink className="w-5 h-5 mb-2" />
                 <span className="text-xs">Interactive Dashboard</span>
-                <span className="text-xs text-muted-foreground">Plotly visualization</span>
               </Button>
-              
               <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
                 <Download className="w-5 h-5 mb-2" />
                 <span className="text-xs">Final Report</span>
-                <span className="text-xs text-muted-foreground">Detailed analysis</span>
               </Button>
             </div>
-            
             <div className="mt-6 flex gap-4">
-              <Button 
-                className="flex-1"
-                onClick={() => window.open("https://github.com/lungelodon/ecommerce-rfm-customer-segmentation", "_self")}
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View Full Repository
+              <Button className="flex-1" onClick={() => window.open("https://github.com/lungelodon", "_blank")}>
+                <Github className="w-4 h-4 mr-2" />View Full Repository
               </Button>
-              
-              <Button 
-                variant="outline"
-                onClick={() => window.open("https://github.com/lungelodon/ecommerce-rfm-customer-segmentation/archive/refs/heads/main.zip", "_blank")}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Project
+              <Button variant="outline" onClick={() => window.open("https://github.com/lungelodon", "_blank")}>
+                <Download className="w-4 h-4 mr-2" />Download Project
               </Button>
             </div>
           </CardContent>

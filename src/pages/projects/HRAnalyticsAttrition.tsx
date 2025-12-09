@@ -801,55 +801,90 @@ def calculate_attrition_risk(employee_data, model, encoders):
           </CardContent>
         </Card>
 
+        {/* Data Overview */}
+        <Card className="mt-8">
+          <CardHeader><CardTitle>Data Overview</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="border rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Total Employees</td><td className="p-3 text-right">1,470</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Features</td><td className="p-3 text-right">35</td></tr>
+                    <tr className="border-b bg-muted/30"><td className="p-3 font-medium">Attrition Rate</td><td className="p-3 text-right">16.1% (237 left)</td></tr>
+                    <tr className="border-b"><td className="p-3 font-medium">Departments</td><td className="p-3 text-right">3 (Sales, R&D, HR)</td></tr>
+                    <tr><td className="p-3 font-medium">Missing Values</td><td className="p-3 text-right">0%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Avg Monthly Income</span><span className="text-project-5 font-semibold">$6,503</span></div></div>
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Avg Tenure</span><span className="text-project-5 font-semibold">7.0 years</span></div></div>
+                <div className="p-4 bg-muted/30 rounded-lg"><div className="flex justify-between"><span>Avg Age</span><span className="text-project-5 font-semibold">36.9 years</span></div></div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Limitations */}
+        <Card className="mt-8 border-yellow-500/20">
+          <CardHeader><CardTitle>Limitations & Constraints</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Data Limitations</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• Single company—may not generalize</li>
+                  <li>• Self-reported satisfaction scores may have bias</li>
+                  <li>• No external labor market data</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
+                <h4 className="font-semibold text-yellow-700 mb-2">Model Assumptions</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• SMOTE may introduce synthetic noise</li>
+                  <li>• Assumes stable organizational structure</li>
+                  <li>• Correlation treated as causation for some factors</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* What I Would Do Next */}
+        <Card className="mt-8 border-project-5/20 bg-gradient-to-br from-project-5/5 to-background">
+          <CardHeader><CardTitle className="text-project-5">What I Would Do Next</CardTitle></CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 border border-project-5/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Survival Analysis</h4>
+                <p className="text-sm text-muted-foreground">Use Cox proportional hazards to predict when employees will leave, not just if.</p>
+              </div>
+              <div className="p-4 border border-project-5/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Sentiment Analysis</h4>
+                <p className="text-sm text-muted-foreground">Integrate exit interview NLP to identify qualitative attrition drivers.</p>
+              </div>
+              <div className="p-4 border border-project-5/20 rounded-lg bg-background">
+                <h4 className="font-semibold mb-2">Real-time Dashboard</h4>
+                <p className="text-sm text-muted-foreground">Build Power BI dashboard with automated risk alerts for HR managers.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Project Resources */}
         <Card className="mt-8">
-          <CardHeader>
-            <CardTitle>Project Resources & Downloads</CardTitle>
-            <CardDescription>Access all project files, datasets, and interactive dashboards</CardDescription>
-          </CardHeader>
+          <CardHeader><CardTitle>Project Resources</CardTitle></CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">HR Dataset</span>
-                <span className="text-xs text-muted-foreground">1,470 employee records</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Github className="w-5 h-5 mb-2" />
-                <span className="text-xs">ML Pipeline</span>
-                <span className="text-xs text-muted-foreground">Complete Python code</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <ExternalLink className="w-5 h-5 mb-2" />
-                <span className="text-xs">Power BI Dashboard</span>
-                <span className="text-xs text-muted-foreground">Interactive HR analytics</span>
-              </Button>
-              
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
-                <Download className="w-5 h-5 mb-2" />
-                <span className="text-xs">Executive Report</span>
-                <span className="text-xs text-muted-foreground">Strategic recommendations</span>
-              </Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">HR Dataset</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Github className="w-5 h-5 mb-2" /><span className="text-xs">ML Pipeline</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><ExternalLink className="w-5 h-5 mb-2" /><span className="text-xs">Power BI Dashboard</span></Button>
+              <Button variant="outline" className="h-20 flex flex-col items-center justify-center"><Download className="w-5 h-5 mb-2" /><span className="text-xs">Executive Report</span></Button>
             </div>
-            
             <div className="mt-6 flex gap-4">
-              <Button 
-                className="flex-1"
-                onClick={() => window.open("https://github.com/lungelodon/hr-analytics-employee-attrition", "_self")}
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View Full Repository
-              </Button>
-              
-              <Button 
-                variant="outline"
-                onClick={() => window.open("https://github.com/lungelodon/hr-analytics-employee-attrition/archive/refs/heads/main.zip", "_blank")}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Project
-              </Button>
+              <Button className="flex-1" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Github className="w-4 h-4 mr-2" />View Repository</Button>
+              <Button variant="outline" onClick={() => window.open("https://github.com/lungelodon", "_blank")}><Download className="w-4 h-4 mr-2" />Download</Button>
             </div>
           </CardContent>
         </Card>
