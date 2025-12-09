@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ImagePositionEditor } from "@/components/ImagePositionEditor";
+import { useAuth } from "@/hooks/useAuth";
 import headshotImage from "/assets/headshot.png";
 import dataPatternBg from "/assets/data-pattern-bg.png";
 import { Settings2 } from "lucide-react";
 
 export function Hero() {
+  const { isAdmin } = useAuth();
   const [imagePosition, setImagePosition] = useState({ x: 50, y: 25 });
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const scrollToProjects = () => {
@@ -47,14 +49,16 @@ export function Hero() {
                 objectPosition: `${imagePosition.x}% ${imagePosition.y}%`,
               }}
             />
-            <Button
-              size="icon"
-              variant="secondary"
-              className="absolute bottom-0 right-0 rounded-full shadow-lg"
-              onClick={() => setIsEditorOpen(true)}
-            >
-              <Settings2 className="h-4 w-4" />
-            </Button>
+            {isAdmin && (
+              <Button
+                size="icon"
+                variant="secondary"
+                className="absolute bottom-0 right-0 rounded-full shadow-lg"
+                onClick={() => setIsEditorOpen(true)}
+              >
+                <Settings2 className="h-4 w-4" />
+              </Button>
+            )}
           </div>
 
           <ImagePositionEditor
