@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Download, Github, ChevronLeft, ChevronRight } from "lucide-react";
-
+import { toast } from "sonner";
 interface Project {
   id: number;
   title: string;
@@ -180,7 +180,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
-                          window.open(`https://youtube.com/watch?v=${project.videoId || 'dQw4w9WgXcQ'}`, '_blank');
+                          toast.info("Still working on it! 🎬", {
+                            description: "Video is currently being edited. Please keep an eye out for updates!",
+                            duration: 4000,
+                          });
                         }}
                         variant="outline"
                         size="sm"
