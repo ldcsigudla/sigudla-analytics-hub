@@ -42,26 +42,19 @@ export const useAuth = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
+      setLoading(false);
       
       if (session?.user) {
-        setTimeout(async () => {
-          try {
-            const { data, error } = await supabase
-              .from('user_roles')
-              .select('role')
-              .eq('user_id', session.user.id)
-              .eq('role', 'admin')
-              .maybeSingle();
-            
+        // Check admin status asynchronously after setting loading to false
+        supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', session.user.id)
+          .eq('role', 'admin')
+          .maybeSingle()
+          .then(({ data, error }) => {
             setIsAdmin(!error && !!data);
-          } catch (error) {
-            console.error('Error checking admin status:', error);
-            setIsAdmin(false);
-          }
-          setLoading(false);
-        }, 0);
-      } else {
-        setLoading(false);
+          });
       }
     });
 
