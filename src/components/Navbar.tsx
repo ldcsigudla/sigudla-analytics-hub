@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "./ContactModal";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User } from "lucide-react";
-import headshotImage from "@/assets/headshot.png";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const scrollToProjects = () => {
+    setIsMobileMenuOpen(false);
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
@@ -34,70 +34,110 @@ export function Navbar() {
   };
 
   const openAnalyticTools = () => {
+    setIsMobileMenuOpen(false);
     navigate("/data-tools");
   };
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/20 backdrop-blur-xl border-b border-white/10">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
             <div 
               onClick={() => navigate("/")}
-              className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+              className="flex items-center gap-3 cursor-pointer group"
             >
-              <Avatar className="w-10 h-10 border-2 border-primary">
-                <AvatarImage src={headshotImage} alt="Lungelo Sigudla" className="object-cover" />
-                <AvatarFallback className="bg-primary text-white">LS</AvatarFallback>
-              </Avatar>
-              <span className="text-xl font-bold text-foreground">
+              <div className="w-10 h-10 bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">LS</span>
+              </div>
+              <span className="text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
                 Lungelo Sigudla
               </span>
             </div>
             
-            <div className="hidden md:flex items-center space-x-3">
-              <Button 
-                variant="ghost" 
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              <button 
                 onClick={scrollToProjects}
-                className="rounded-full bg-background/30 backdrop-blur-md text-foreground hover:text-foreground hover:bg-background/50 font-medium border border-border/30 hover:border-border/60 transition-all px-6"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide"
               >
                 Projects
-              </Button>
+              </button>
               
-              <Button 
-                variant="ghost" 
+              <button 
                 onClick={downloadCV}
-                className="rounded-full bg-background/30 backdrop-blur-md text-foreground hover:text-foreground hover:bg-background/50 font-medium border border-border/30 hover:border-border/60 transition-all px-6"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide"
               >
-                Download CV
-              </Button>
+                Resume
+              </button>
+              
+              <button 
+                onClick={openAnalyticTools}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide"
+              >
+                Tools
+              </button>
               
               <Button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold border-0 shadow-lg hover:shadow-xl transition-all px-6"
+                className="h-11 px-6 text-sm font-semibold tracking-wide rounded-none bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                Contact
+                Get In Touch
               </Button>
-              
-              <Button 
-                variant="ghost" 
-                onClick={openAnalyticTools}
-                className="rounded-full bg-background/30 backdrop-blur-md text-foreground hover:text-foreground hover:bg-background/50 font-medium border border-border/30 hover:border-border/60 transition-all px-6"
-              >
-                Access My Data Tools
-              </Button>
-              
-              <Avatar 
-                className="cursor-pointer hover:ring-2 hover:ring-primary transition-all"
-                onClick={() => navigate("/auth")}
-              >
-                <AvatarFallback className="bg-primary text-white">
-                  <User className="w-5 h-5" />
-                </AvatarFallback>
-              </Avatar>
             </div>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-background border-t border-border">
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              <button 
+                onClick={scrollToProjects}
+                className="text-left py-3 text-lg font-medium text-foreground border-b border-border"
+              >
+                Projects
+              </button>
+              
+              <button 
+                onClick={downloadCV}
+                className="text-left py-3 text-lg font-medium text-foreground border-b border-border"
+              >
+                Resume
+              </button>
+              
+              <button 
+                onClick={openAnalyticTools}
+                className="text-left py-3 text-lg font-medium text-foreground border-b border-border"
+              >
+                Tools
+              </button>
+              
+              <Button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsContactModalOpen(true);
+                }}
+                className="mt-4 h-14 text-base font-semibold tracking-wide rounded-none bg-primary text-primary-foreground"
+              >
+                Get In Touch
+              </Button>
+            </div>
+          </div>
+        )}
       </nav>
 
       <ContactModal 
