@@ -1,135 +1,127 @@
-import { BarChart3, Brain, LineChart, Briefcase, GraduationCap, Users, TrendingUp } from "lucide-react";
+import { BarChart3, Brain, LineChart, Briefcase } from "lucide-react";
 
 const competencies = [
   {
     icon: BarChart3,
+    number: "01",
     title: "Data Analysis",
-    description: "Statistical modeling and exploratory data analysis",
-    gradient: "from-blue-500 to-cyan-500"
+    description: "Statistical modeling, exploratory analysis, and data-driven insights that inform strategic decisions."
   },
   {
     icon: Brain,
+    number: "02",
     title: "Machine Learning",
-    description: "Predictive modeling and algorithm development",
-    gradient: "from-purple-500 to-pink-500"
+    description: "Predictive modeling, algorithm development, and AI solutions that deliver measurable results."
   },
   {
     icon: LineChart,
+    number: "03",
     title: "Data Visualization",
-    description: "Interactive dashboards and compelling narratives",
-    gradient: "from-orange-500 to-amber-500"
+    description: "Interactive dashboards and compelling visual narratives that communicate complex insights."
   },
   {
     icon: Briefcase,
+    number: "04",
     title: "Business Intelligence",
-    description: "Strategic recommendations and growth insights",
-    gradient: "from-emerald-500 to-teal-500"
+    description: "Strategic recommendations and actionable intelligence that accelerate business growth."
   }
 ];
 
-const journeyItems = [
+const journey = [
   {
-    icon: GraduationCap,
-    title: "Data Science and Data Engineering Bootcamp",
-    organization: "Umuzi.org",
-    description: "Intensive program covering data science, analysis, big data technologies and machine learning.",
-    color: "bg-blue-500"
-  },
-  {
-    icon: TrendingUp,
-    title: "Data Analyst",
-    organization: "Previous Role",
-    description: "Developed predictive models and created executive dashboards for strategic decision-making.",
-    color: "bg-purple-500"
-  },
-  {
-    icon: Users,
+    year: "2023",
     title: "Business Intelligence Specialist",
-    organization: "Consulting Projects",
-    description: "Led data transformation initiatives and implemented analytics solutions for various clients.",
-    color: "bg-emerald-500"
+    org: "Consulting Projects",
+    desc: "Led data transformation initiatives and implemented analytics solutions for enterprise clients."
+  },
+  {
+    year: "2022",
+    title: "Data Analyst",
+    org: "Previous Role",
+    desc: "Developed predictive models and created executive dashboards for strategic decision-making."
+  },
+  {
+    year: "2021",
+    title: "Data Science Bootcamp",
+    org: "Umuzi.org",
+    desc: "Intensive program covering data science, analysis, big data technologies and machine learning."
   }
 ];
 
 export function About() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent" />
+    <section className="py-32 relative">
+      {/* Section divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-border to-transparent" />
       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-              About Me
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-24">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-primary" />
+            <span className="text-primary font-medium tracking-[0.2em] text-sm uppercase">
+              About
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Focused on{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Data Science
-              </span>{" "}
-              and Analysis
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              I specialize in transforming raw data into meaningful insights that drive business growth.
-              With expertise in machine learning, statistical analysis, and data visualization, I help organizations 
-              make smarter decisions through data-driven insights.
-            </p>
           </div>
+          
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight mb-8">
+            Turning Data Into
+            <span className="text-primary"> Strategic Value</span>
+          </h2>
+          
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            I specialize in transforming raw data into meaningful insights that drive business growth.
+            With expertise in machine learning, statistical analysis, and data visualization, I help 
+            organizations make smarter decisions through data-driven intelligence.
+          </p>
+        </div>
 
-          {/* Core Competencies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {competencies.map((comp, index) => (
+        {/* Competencies Grid */}
+        <div className="grid md:grid-cols-2 gap-px bg-border mb-32">
+          {competencies.map((comp, index) => (
+            <div 
+              key={index}
+              className="bg-background p-8 lg:p-12 group hover:bg-card transition-colors duration-300"
+            >
+              <div className="flex items-start justify-between mb-6">
+                <span className="text-5xl lg:text-6xl font-bold text-border group-hover:text-primary/30 transition-colors">
+                  {comp.number}
+                </span>
+                <comp.icon className="w-8 h-8 text-primary" />
+              </div>
+              
+              <h3 className="text-xl lg:text-2xl font-bold mb-4">{comp.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{comp.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Journey Timeline */}
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-12 h-px bg-primary" />
+            <span className="text-primary font-medium tracking-[0.2em] text-sm uppercase">
+              Experience
+            </span>
+          </div>
+          
+          <div className="space-y-0">
+            {journey.map((item, index) => (
               <div 
                 key={index}
-                className="group relative p-6 rounded-2xl bg-background/60 backdrop-blur-sm border border-border/50 hover:border-border transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+                className="group grid md:grid-cols-[120px_1fr] gap-6 md:gap-12 py-8 border-b border-border last:border-0 hover:bg-card/50 transition-colors px-4 -mx-4"
               >
-                {/* Icon with gradient background */}
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${comp.gradient} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <comp.icon className="w-7 h-7 text-white" />
+                <div className="text-2xl lg:text-3xl font-bold text-primary">
+                  {item.year}
                 </div>
                 
-                <h3 className="font-semibold text-lg mb-2">{comp.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{comp.description}</p>
+                <div>
+                  <h4 className="text-xl font-bold mb-1">{item.title}</h4>
+                  <p className="text-primary text-sm font-medium mb-3">{item.org}</p>
+                  <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             ))}
-          </div>
-
-          {/* Career Journey */}
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-                Experience
-              </span>
-              <h3 className="text-3xl font-bold">My Journey</h3>
-            </div>
-            
-            <div className="space-y-6">
-              {journeyItems.map((item, index) => (
-                <div 
-                  key={index}
-                  className="group relative flex gap-6 p-6 rounded-2xl bg-background/60 backdrop-blur-sm border border-border/50 hover:border-border transition-all duration-300 hover:shadow-lg"
-                >
-                  {/* Timeline dot and line */}
-                  <div className="flex flex-col items-center">
-                    <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                    {index < journeyItems.length - 1 && (
-                      <div className="w-0.5 h-full bg-border mt-4" />
-                    )}
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 pb-2">
-                    <h4 className="font-semibold text-lg mb-1">{item.title}</h4>
-                    <p className="text-sm text-primary font-medium mb-2">{item.organization}</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
