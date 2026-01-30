@@ -1,127 +1,73 @@
-import { BarChart3, Brain, LineChart, Briefcase } from "lucide-react";
-
-const competencies = [
-  {
-    icon: BarChart3,
-    number: "01",
-    title: "Data Analysis",
-    description: "Statistical modeling, exploratory analysis, and data-driven insights that inform strategic decisions."
-  },
-  {
-    icon: Brain,
-    number: "02",
-    title: "Machine Learning",
-    description: "Predictive modeling, algorithm development, and AI solutions that deliver measurable results."
-  },
-  {
-    icon: LineChart,
-    number: "03",
-    title: "Data Visualization",
-    description: "Interactive dashboards and compelling visual narratives that communicate complex insights."
-  },
-  {
-    icon: Briefcase,
-    number: "04",
-    title: "Business Intelligence",
-    description: "Strategic recommendations and actionable intelligence that accelerate business growth."
-  }
-];
-
-const journey = [
-  {
-    year: "2023",
-    title: "Business Intelligence Specialist",
-    org: "Consulting Projects",
-    desc: "Led data transformation initiatives and implemented analytics solutions for enterprise clients."
-  },
-  {
-    year: "2022",
-    title: "Data Analyst",
-    org: "Previous Role",
-    desc: "Developed predictive models and created executive dashboards for strategic decision-making."
-  },
-  {
-    year: "2021",
-    title: "Data Science Bootcamp",
-    org: "Umuzi.org",
-    desc: "Intensive program covering data science, analysis, big data technologies and machine learning."
-  }
-];
-
 export function About() {
   return (
-    <section className="py-32 relative">
-      {/* Section divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-border to-transparent" />
-      
-      <div className="container mx-auto px-6 lg:px-12">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-24">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-px bg-primary" />
-            <span className="text-primary font-medium tracking-[0.2em] text-sm uppercase">
-              About
-            </span>
-          </div>
-          
-          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight mb-8">
-            Turning Data Into
-            <span className="text-primary"> Strategic Value</span>
-          </h2>
-          
-          <p className="text-lg text-muted-foreground leading-relaxed">
+    <section className="py-20">
+      <div className="container mx-auto px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Focused on Data Science and Analysis</h2>
+          <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
             I specialize in transforming raw data into meaningful insights that drive business growth.
-            With expertise in machine learning, statistical analysis, and data visualization, I help 
-            organizations make smarter decisions through data-driven intelligence.
+            With expertise in machine learning, statistical analysis, and data visualization, I help organizations 
+            make smarter decisions through data-driven insights.
           </p>
-        </div>
 
-        {/* Competencies Grid */}
-        <div className="grid md:grid-cols-2 gap-px bg-border mb-32">
-          {competencies.map((comp, index) => (
-            <div 
-              key={index}
-              className="bg-background p-8 lg:p-12 group hover:bg-card transition-colors duration-300"
-            >
-              <div className="flex items-start justify-between mb-6">
-                <span className="text-5xl lg:text-6xl font-bold text-border group-hover:text-primary/30 transition-colors">
-                  {comp.number}
-                </span>
-                <comp.icon className="w-8 h-8 text-primary" />
+          {/* Core Competencies Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="text-center p-6 rounded-lg bg-muted/50">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📊</span>
               </div>
-              
-              <h3 className="text-xl lg:text-2xl font-bold mb-4">{comp.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{comp.description}</p>
+              <h3 className="font-semibold mb-2">Data Analysis</h3>
+              <p className="text-sm text-muted-foreground">Statistical modeling and exploratory data analysis</p>
             </div>
-          ))}
-        </div>
 
-        {/* Journey Timeline */}
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
-            <div className="w-12 h-px bg-primary" />
-            <span className="text-primary font-medium tracking-[0.2em] text-sm uppercase">
-              Experience
-            </span>
-          </div>
-          
-          <div className="space-y-0">
-            {journey.map((item, index) => (
-              <div 
-                key={index}
-                className="group grid md:grid-cols-[120px_1fr] gap-6 md:gap-12 py-8 border-b border-border last:border-0 hover:bg-card/50 transition-colors px-4 -mx-4"
-              >
-                <div className="text-2xl lg:text-3xl font-bold text-primary">
-                  {item.year}
-                </div>
-                
-                <div>
-                  <h4 className="text-xl font-bold mb-1">{item.title}</h4>
-                  <p className="text-primary text-sm font-medium mb-3">{item.org}</p>
-                  <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
+            <div className="text-center p-6 rounded-lg bg-muted/50">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🤖</span>
               </div>
-            ))}
+              <h3 className="font-semibold mb-2">Machine Learning</h3>
+              <p className="text-sm text-muted-foreground">Predictive modeling and algorithm development</p>
+            </div>
+
+            <div className="text-center p-6 rounded-lg bg-muted/50">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📈</span>
+              </div>
+              <h3 className="font-semibold mb-2">Data Visualization</h3>
+              <p className="text-sm text-muted-foreground">Interactive dashboards and compelling narratives</p>
+            </div>
+
+            <div className="text-center p-6 rounded-lg bg-muted/50">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">💼</span>
+              </div>
+              <h3 className="font-semibold mb-2">Business Intelligence</h3>
+              <p className="text-sm text-muted-foreground">Strategic recommendations and growth insights</p>
+            </div>
+          </div>
+
+          {/* Career Journey Summary */}
+          <div className="text-left max-w-3xl mx-auto">
+            <h3 className="text-2xl font-semibold mb-8 text-center">My Journey</h3>
+            
+            <div className="space-y-6">
+              <div className="border-l-4 border-primary pl-6">
+                <h4 className="font-semibold text-lg">Data Science and Data Engineering Bootcamp</h4>
+                <p className="text-muted-foreground text-sm mb-2">Umuzi.org</p>
+                <p className="text-sm">Intensive program covering data science, analysis, big data technologies and machine learning.</p>
+              </div>
+
+              <div className="border-l-4 border-primary pl-6">
+                <h4 className="font-semibold text-lg">Data Analyst</h4>
+                <p className="text-muted-foreground text-sm mb-2">Previous Role</p>
+                <p className="text-sm">Developed predictive models and created executive dashboards for strategic decision-making.</p>
+              </div>
+
+              <div className="border-l-4 border-primary pl-6">
+                <h4 className="font-semibold text-lg">Business Intelligence Specialist</h4>
+                <p className="text-muted-foreground text-sm mb-2">Consulting Projects</p>
+                <p className="text-sm">Led data transformation initiatives and implemented analytics solutions for various clients.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
