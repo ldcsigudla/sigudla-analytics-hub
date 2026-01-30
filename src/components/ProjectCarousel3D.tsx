@@ -27,8 +27,8 @@ interface ProjectCarousel3DProps {
 export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: ProjectCarousel3DProps) {
   const [currentRotation, setCurrentRotation] = useState(0);
   const totalProjects = projects.length;
-  const angleStep = 360 / totalProjects; // Degrees between each card
-  const radius = 880; // Distance from center (translateZ value) - increased to prevent overlap
+  const angleStep = 360 / totalProjects;
+  const radius = 550; // Reduced for better visibility
 
   const rotateNext = () => {
     setCurrentRotation((prev) => prev - angleStep);
@@ -42,7 +42,6 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
     setCurrentRotation(-angleStep * index);
   };
 
-  // Calculate which card is currently at front (closest to 0 degrees)
   const getCurrentIndex = () => {
     const normalized = (((-currentRotation % 360) + 360) % 360);
     const index = Math.round(normalized / angleStep) % totalProjects;
@@ -52,45 +51,44 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
   const currentIndex = getCurrentIndex();
 
   return (
-    <div className="relative w-full py-20">
+    <div className="relative w-full py-16">
       {/* Navigation Buttons */}
       <button
         onClick={rotatePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 backdrop-blur-sm hover:bg-background border-2 border-primary/30 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:border-primary shadow-lg"
+        className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 z-50 bg-card hover:bg-accent border border-border rounded-full p-4 transition-all duration-300 hover:scale-105 shadow-lg"
         aria-label="Previous project"
       >
-        <ChevronLeft className="w-6 h-6 text-primary" />
+        <ChevronLeft className="w-5 h-5 text-foreground" />
       </button>
 
       <button
         onClick={rotateNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 backdrop-blur-sm hover:bg-background border-2 border-primary/30 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:border-primary shadow-lg"
+        className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-50 bg-card hover:bg-accent border border-border rounded-full p-4 transition-all duration-300 hover:scale-105 shadow-lg"
         aria-label="Next project"
       >
-        <ChevronRight className="w-6 h-6 text-primary" />
+        <ChevronRight className="w-5 h-5 text-foreground" />
       </button>
 
       {/* 3D Carousel Scene */}
       <div 
         className="w-full flex justify-center items-center"
         style={{ 
-          minHeight: "700px",
-          perspective: "1500px",
+          minHeight: "520px",
+          perspective: "1200px",
           perspectiveOrigin: "50% 50%",
         }}
       >
-        {/* 3D Carousel Container - This rotates */}
+        {/* 3D Carousel Container */}
         <div
           className="relative"
           style={{
-            width: "200px",
-            height: "300px",
+            width: "320px",
+            height: "420px",
             transformStyle: "preserve-3d",
             transform: `rotateY(${currentRotation}deg)`,
-            transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+            transition: "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          {/* Individual Cards */}
           {projects.map((project, index) => {
             const angle = angleStep * index;
             const isActive = index === currentIndex;
@@ -106,33 +104,35 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                 }}
               >
                 <Card 
-                  className={`group hover:shadow-2xl transition-all duration-300 border-2 h-full ${project.borderColor}/20 hover:${project.borderColor}/60 ${
-                    isActive ? "cursor-pointer" : "pointer-events-none opacity-70"
+                  className={`group transition-all duration-300 border h-full bg-card ${
+                    isActive 
+                      ? "cursor-pointer shadow-2xl border-primary/30" 
+                      : "pointer-events-none opacity-50 border-border"
                   }`}
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    width: "320px",
+                    height: "420px",
                     transformStyle: "preserve-3d",
-                    transform: isActive ? "scale(1.05)" : "scale(0.95)",
+                    transform: isActive ? "scale(1)" : "scale(0.85)",
                   }}
                 >
-                  <CardHeader className="p-2">
-                    <div className="w-full h-24 bg-muted rounded-md flex items-center justify-center mb-1.5 overflow-hidden">
+                  <CardHeader className="p-4">
+                    <div className="w-full h-40 bg-muted rounded-lg flex items-center justify-center mb-3 overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
                     </div>
-                    <CardTitle className="text-sm font-semibold leading-tight">{project.title}</CardTitle>
-                    <CardDescription className="text-[10px] text-muted-foreground line-clamp-2 leading-tight">
+                    <CardTitle className="text-lg font-semibold leading-tight">{project.title}</CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground line-clamp-3 leading-relaxed mt-2">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardFooter className="p-2 pt-0">
-                    <div className="grid grid-cols-2 gap-0.5 w-full">
+                  <CardFooter className="p-4 pt-0">
+                    <div className="grid grid-cols-2 gap-2 w-full">
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -140,10 +140,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full text-[9px] px-1 h-5 ${project.githubBg}`}
+                        className="w-full text-xs h-9"
                         disabled={!isActive}
                       >
-                        <Github className="w-2.5 h-2.5 mr-0.5" />
+                        <Github className="w-3.5 h-3.5 mr-1.5" />
                         GitHub
                       </Button>
                       
@@ -152,12 +152,12 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                           e.stopPropagation();
                           onProjectClick(project.id);
                         }}
-                        variant="outline"
+                        variant="default"
                         size="sm"
-                        className={`w-full rounded-full text-[9px] px-1 h-5 ${project.projectBg}`}
+                        className="w-full text-xs h-9"
                         disabled={!isActive}
                       >
-                        <ExternalLink className="w-2.5 h-2.5 mr-0.5" />
+                        <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
                         Report
                       </Button>
                       
@@ -169,10 +169,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                           }}
                           variant="outline"
                           size="sm"
-                          className={`w-full rounded-full text-[9px] px-1 h-5 ${project.downloadBg}`}
+                          className="w-full text-xs h-9"
                           disabled={!isActive}
                         >
-                          <Download className="w-2.5 h-2.5 mr-0.5" />
+                          <Download className="w-3.5 h-3.5 mr-1.5" />
                           Download
                         </Button>
                       )}
@@ -187,10 +187,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className="w-full rounded-full text-[9px] px-1 h-5 bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
+                        className="w-full text-xs h-9 border-destructive/30 text-destructive hover:bg-destructive/10"
                         disabled={!isActive}
                       >
-                        <svg className="w-2.5 h-2.5 mr-0.5" viewBox="0 0 24 24" fill="currentColor">
+                        <svg className="w-3.5 h-3.5 mr-1.5" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                         Video
