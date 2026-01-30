@@ -25,36 +25,35 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-b from-background via-background to-muted/20">
-      {/* Subtle geometric background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `url(${dataPatternBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      />
       
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Profile Image - Clean professional frame */}
-          <div className="mb-10 relative inline-block">
-            <div className="relative">
-              {/* Outer ring */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-full" />
-              <div className="relative p-1 bg-background rounded-full shadow-2xl">
-                <img
-                  src={headshotImage}
-                  alt="Lungelo Don Sigudla"
-                  className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover"
-                  style={{
-                    objectPosition: `${imagePosition.x}% ${imagePosition.y}%`,
-                  }}
-                />
-              </div>
-            </div>
+          {/* Profile Image */}
+          <div className="mb-8 relative inline-block">
+            <img
+              src={headshotImage}
+              alt="Lungelo Don Sigudla"
+              className="w-56 h-56 rounded-full mx-auto object-cover shadow-lg"
+              style={{
+                objectPosition: `${imagePosition.x}% ${imagePosition.y}%`,
+              }}
+            />
             {isAdmin && (
               <Button
                 size="icon"
                 variant="secondary"
-                className="absolute bottom-2 right-2 rounded-full shadow-lg"
+                className="absolute bottom-0 right-0 rounded-full shadow-lg"
                 onClick={() => setIsEditorOpen(true)}
               >
                 <Settings2 className="h-4 w-4" />
