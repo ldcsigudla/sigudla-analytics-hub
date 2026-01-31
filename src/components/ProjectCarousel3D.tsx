@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Download, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 interface Project {
   id: number;
@@ -25,10 +25,13 @@ interface ProjectCarousel3DProps {
 }
 
 export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: ProjectCarousel3DProps) {
-  const [currentRotation, setCurrentRotation] = useState(0);
   const totalProjects = projects.length;
   const angleStep = 360 / totalProjects; // Degrees between each card
   const radius = 520; // Distance from center - reduced for smaller cards
+  
+  // Start at E-commerce RFM (index 9)
+  const defaultIndex = 9;
+  const [currentRotation, setCurrentRotation] = useState(-angleStep * defaultIndex);
 
   const rotateNext = () => {
     setCurrentRotation((prev) => prev - angleStep);
@@ -106,7 +109,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                 }}
               >
                 <Card 
-                  className={`group hover:shadow-2xl transition-all duration-300 border-2 h-full ${project.borderColor}/20 hover:${project.borderColor}/60 ${
+                  className={`group hover:shadow-2xl transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60 ${
                     isActive ? "cursor-pointer" : "pointer-events-none opacity-70"
                   }`}
                   style={{
@@ -114,10 +117,13 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                     height: "100%",
                     transformStyle: "preserve-3d",
                     transform: isActive ? "scale(1.05)" : "scale(0.95)",
+                    display: "flex",
+                    flexDirection: "column",
+                    overflow: "hidden",
                   }}
                 >
-                  <CardHeader className="p-2">
-                    <div className="w-full h-24 bg-muted rounded-md flex items-center justify-center mb-1.5 overflow-hidden">
+                  <CardHeader className="p-2 flex-shrink-0">
+                    <div className="w-full h-20 bg-muted rounded-md flex items-center justify-center mb-1 overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -125,13 +131,13 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         loading="lazy"
                       />
                     </div>
-                    <CardTitle className="text-sm font-semibold leading-tight">{project.title}</CardTitle>
-                    <CardDescription className="text-[10px] text-muted-foreground line-clamp-2 leading-tight">
+                    <CardTitle className="text-xs font-semibold leading-tight line-clamp-2">{project.title}</CardTitle>
+                    <CardDescription className="text-[9px] text-muted-foreground line-clamp-2 leading-tight">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardFooter className="p-2 pt-0">
+                  <CardFooter className="p-2 pt-0 mt-auto">
                     <div className="grid grid-cols-2 gap-0.5 w-full">
                       <Button
                         onClick={(e) => {
@@ -140,10 +146,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full text-[9px] px-1 h-5 ${project.githubBg}`}
+                        className={`w-full rounded-full text-[8px] px-0.5 h-4 ${project.githubBg}`}
                         disabled={!isActive}
                       >
-                        <Github className="w-2.5 h-2.5 mr-0.5" />
+                        <Github className="w-2 h-2 mr-0.5" />
                         GitHub
                       </Button>
                       
@@ -154,28 +160,12 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full text-[9px] px-1 h-5 ${project.projectBg}`}
+                        className={`w-full rounded-full text-[8px] px-0.5 h-4 ${project.projectBg}`}
                         disabled={!isActive}
                       >
-                        <ExternalLink className="w-2.5 h-2.5 mr-0.5" />
+                        <ExternalLink className="w-2 h-2 mr-0.5" />
                         Report
                       </Button>
-                      
-                      {project.download && (
-                        <Button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.download, '_blank');
-                          }}
-                          variant="outline"
-                          size="sm"
-                          className={`w-full rounded-full text-[9px] px-1 h-5 ${project.downloadBg}`}
-                          disabled={!isActive}
-                        >
-                          <Download className="w-2.5 h-2.5 mr-0.5" />
-                          Download
-                        </Button>
-                      )}
 
                       <Button
                         onClick={(e) => {
@@ -187,10 +177,10 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className="w-full rounded-full text-[9px] px-1 h-5 bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
+                        className="w-full rounded-full text-[8px] px-0.5 h-4 bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700 col-span-2"
                         disabled={!isActive}
                       >
-                        <svg className="w-2.5 h-2.5 mr-0.5" viewBox="0 0 24 24" fill="currentColor">
+                        <svg className="w-2 h-2 mr-0.5" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                         Video
