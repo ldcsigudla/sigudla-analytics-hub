@@ -51,7 +51,7 @@ export function Navbar() {
                 <AvatarFallback className="bg-primary text-white">LS</AvatarFallback>
               </Avatar>
               <span className="text-xl font-bold text-foreground">
-                Lungelo Sigudla
+                Lungelo Don
               </span>
             </div>
             
