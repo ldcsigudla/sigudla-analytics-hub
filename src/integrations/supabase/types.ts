@@ -29,6 +29,39 @@ export type Database = {
         }
         Relationships: []
       }
+      dataset_requests: {
+        Row: {
+          created_at: string
+          dataset_id: number
+          dataset_title: string
+          email: string
+          id: string
+          message: string | null
+          name: string | null
+          request_type: string
+        }
+        Insert: {
+          created_at?: string
+          dataset_id: number
+          dataset_title: string
+          email: string
+          id?: string
+          message?: string | null
+          name?: string | null
+          request_type?: string
+        }
+        Update: {
+          created_at?: string
+          dataset_id?: number
+          dataset_title?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string | null
+          request_type?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null
