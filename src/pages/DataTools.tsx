@@ -122,15 +122,25 @@ export default function DataTools() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {tools.map((tool) => {
+            {tools.map((tool, index) => {
               const Icon = tool.icon;
+              // Vary the card interaction styles
+              const cardStyles = [
+                "hover:ring-2 hover:ring-primary/50",
+                "hover:border-primary hover:shadow-primary/20",
+                "hover:translate-y-[-4px]",
+                "hover:ring-2 hover:ring-offset-2 hover:ring-offset-background hover:ring-primary/40",
+              ];
+              const cardStyle = cardStyles[index % cardStyles.length];
+              
               return (
                 <Card
                   key={tool.id}
-                  className="cursor-pointer hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 hover:border-transparent relative overflow-hidden group"
+                  className={`cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 relative overflow-hidden group ${cardStyle}`}
                   onClick={() => setActiveTool(tool.id)}
                 >
-                  <CardHeader>
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <CardHeader className="relative z-10">
                     <div className="flex items-center gap-3 mb-2">
                       <div className={`p-3 rounded-xl ${tool.iconBg} group-hover:scale-110 transition-transform duration-300`}>
                         <Icon className={`h-6 w-6 ${tool.iconColor}`} />
@@ -141,12 +151,11 @@ export default function DataTools() {
                     </div>
                     <CardDescription>{tool.description}</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <Button 
-                      className={`w-auto px-6 py-2 ${tool.iconBg} ${tool.iconColor} border border-current hover:opacity-80 font-semibold transition-all duration-300`}
-                    >
-                      Open Tool →
-                    </Button>
+                  <CardContent className="relative z-10 pt-0">
+                    <div className="flex items-center text-sm text-muted-foreground group-hover:text-primary transition-colors">
+                      <span className="mr-2">Click to open</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
                   </CardContent>
                 </Card>
               );

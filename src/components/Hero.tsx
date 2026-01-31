@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ImagePositionEditor } from "@/components/ImagePositionEditor";
+import { ContactModal } from "@/components/ContactModal";
 import { useAuth } from "@/hooks/useAuth";
 import headshotImage from "/assets/headshot.png";
 import dataPatternBg from "/assets/data-pattern-bg.png";
@@ -10,6 +11,7 @@ export function Hero() {
   const { isAdmin } = useAuth();
   const [imagePosition, setImagePosition] = useState({ x: 50, y: 25 });
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   
   const scrollToProjects = () => {
     const projectsSection = document.getElementById("projects");
@@ -119,15 +121,18 @@ export function Hero() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 justify-center lg:justify-start">
+                  <button 
+                    onClick={() => setIsContactOpen(true)}
+                    className="flex items-center gap-3 justify-center lg:justify-start w-full text-left hover:bg-primary/5 rounded-lg p-2 -m-2 transition-colors cursor-pointer"
+                  >
                     <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div className="text-left">
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Contact</p>
-                      <p className="text-foreground font-medium">Available for opportunities</p>
+                      <p className="text-foreground font-medium hover:text-primary transition-colors">Available for opportunities</p>
                     </div>
-                  </div>
+                  </button>
                 </div>
 
                 {/* Tagline */}
@@ -157,6 +162,11 @@ export function Hero() {
         onClose={() => setIsEditorOpen(false)}
         onSave={setImagePosition}
         initialPosition={imagePosition}
+      />
+
+      <ContactModal 
+        isOpen={isContactOpen} 
+        onClose={() => setIsContactOpen(false)} 
       />
     </section>
   );

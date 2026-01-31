@@ -109,7 +109,7 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                 }}
               >
                 <Card 
-                  className={`group hover:shadow-2xl transition-all duration-300 border-2 ${project.borderColor}/20 hover:${project.borderColor}/60 ${
+                  className={`group hover:shadow-2xl transition-all duration-300 border-2 border-primary/40 hover:border-primary/70 ${
                     isActive ? "cursor-pointer" : "pointer-events-none opacity-70"
                   }`}
                   style={{
@@ -146,11 +146,11 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full text-[8px] px-0.5 h-4 ${project.githubBg}`}
+                        className={`w-full rounded-full text-[7px] px-0.5 h-4 ${project.githubBg}`}
                         disabled={!isActive}
                       >
-                        <Github className="w-2 h-2 mr-0.5" />
-                        GitHub
+                        <Github className="w-2 h-2 mr-0.5 flex-shrink-0" />
+                        <span className="truncate">GitHub</span>
                       </Button>
                       
                       <Button
@@ -160,11 +160,29 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className={`w-full rounded-full text-[8px] px-0.5 h-4 ${project.projectBg}`}
+                        className={`w-full rounded-full text-[7px] px-0.5 h-4 ${project.projectBg}`}
                         disabled={!isActive}
                       >
-                        <ExternalLink className="w-2 h-2 mr-0.5" />
-                        Report
+                        <ExternalLink className="w-2 h-2 mr-0.5 flex-shrink-0" />
+                        <span className="truncate">Report</span>
+                      </Button>
+
+                      <Button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (project.download) {
+                            window.open(project.download, '_blank');
+                          } else {
+                            toast.info("Coming soon!", { description: "Download will be available shortly." });
+                          }
+                        }}
+                        variant="outline"
+                        size="sm"
+                        className={`w-full rounded-full text-[7px] px-0.5 h-4 ${project.downloadBg}`}
+                        disabled={!isActive}
+                      >
+                        <ExternalLink className="w-2 h-2 mr-0.5 flex-shrink-0" />
+                        <span className="truncate">Download</span>
                       </Button>
 
                       <Button
@@ -177,13 +195,13 @@ export function ProjectCarousel3D({ projects, onProjectClick, onGithubClick }: P
                         }}
                         variant="outline"
                         size="sm"
-                        className="w-full rounded-full text-[8px] px-0.5 h-4 bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700 col-span-2"
+                        className="w-full rounded-full text-[7px] px-0.5 h-4 bg-red-600/10 hover:bg-red-600/20 border-red-600/30 text-red-600 hover:text-red-700"
                         disabled={!isActive}
                       >
-                        <svg className="w-2 h-2 mr-0.5" viewBox="0 0 24 24" fill="currentColor">
+                        <svg className="w-2 h-2 mr-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
-                        Video
+                        <span className="truncate">Video</span>
                       </Button>
                     </div>
                   </CardFooter>
