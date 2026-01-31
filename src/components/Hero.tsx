@@ -39,44 +39,43 @@ export function Hero() {
       />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          {/* Professional ID Card Layout */}
-          <div className="bg-card/60 backdrop-blur-xl border-2 border-primary/30 rounded-xl p-8 md:p-12 shadow-2xl">
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center lg:items-start">
-              
-              {/* Left: Profile Image with Frame */}
-              <div className="relative flex-shrink-0">
-                <div className="relative">
-                  {/* Outer decorative frame */}
-                  <div className="absolute -inset-3 bg-gradient-to-br from-primary/40 via-primary/20 to-primary/40 rounded-lg" />
-                  {/* Inner frame */}
-                  <div className="absolute -inset-1.5 bg-card rounded-lg" />
-                  {/* Image container */}
-                  <div className="relative w-52 h-64 md:w-60 md:h-72 overflow-hidden rounded-lg border-4 border-primary/50 shadow-xl">
-                    <img
-                      src={headshotImage}
-                      alt="Lungelo Don Sigudla"
-                      className="w-full h-full object-cover"
-                      style={{
-                        objectPosition: `${imagePosition.x}% ${imagePosition.y}%`,
-                      }}
-                    />
-                  </div>
-                  {isAdmin && (
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="absolute -bottom-2 -right-2 rounded-full shadow-lg z-10"
-                      onClick={() => setIsEditorOpen(true)}
-                    >
-                      <Settings2 className="h-4 w-4" />
-                    </Button>
-                  )}
+        <div className="max-w-6xl mx-auto">
+          {/* Professional ID Layout - No overlay */}
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center lg:items-start">
+            
+            {/* Left: Profile Image with Frame */}
+            <div className="relative flex-shrink-0">
+              <div className="relative">
+                {/* Outer decorative frame */}
+                <div className="absolute -inset-3 bg-gradient-to-br from-primary/40 via-primary/20 to-primary/40 rounded-lg" />
+                {/* Inner frame */}
+                <div className="absolute -inset-1.5 bg-background rounded-lg" />
+                {/* Image container */}
+                <div className="relative w-56 h-72 md:w-64 md:h-80 overflow-hidden rounded-lg border-4 border-primary/50 shadow-2xl">
+                  <img
+                    src={headshotImage}
+                    alt="Lungelo Don Sigudla"
+                    className="w-full h-full object-cover"
+                    style={{
+                      objectPosition: `${imagePosition.x}% ${imagePosition.y}%`,
+                    }}
+                  />
                 </div>
+                {isAdmin && (
+                  <Button
+                    size="icon"
+                    variant="secondary"
+                    className="absolute -bottom-2 -right-2 rounded-full shadow-lg z-10"
+                    onClick={() => setIsEditorOpen(true)}
+                  >
+                    <Settings2 className="h-4 w-4" />
+                  </Button>
+                )}
               </div>
+            </div>
 
-              {/* Right: Profile Information */}
-              <div className="flex-1 text-center lg:text-left">
+            {/* Right: Profile Information */}
+            <div className="flex-1 text-center lg:text-left">
                 {/* Name */}
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
                   <span className="text-foreground">Lungelo Don</span>
@@ -146,7 +145,6 @@ export function Hero() {
                   <Button onClick={downloadCV} variant="outline" size="lg" className="text-lg px-8">
                     Download CV
                   </Button>
-                </div>
               </div>
             </div>
           </div>
